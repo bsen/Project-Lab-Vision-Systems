@@ -1,13 +1,15 @@
-#from https://github.com/JiaRenChang/PSMNet/blob/master/dataloader/preprocess.py
+# inspired by https://github.com/JiaRenChang/PSMNet/blob/master/dataloader/preprocess.pytrast
+# but heavily changed
 import torch
 import torchvision.transforms as transforms
 import random
+import numpy.random as rand
+import torchvision.transforms.functional as F
+from torchvision.transforms.functional import to_tensor
 
-__imagenet_stats = {'mean': [0.485, 0.456, 0.406],
+
+imagenet_stats = {'mean': [0.485, 0.456, 0.406],
                    'std': [0.229, 0.224, 0.225]}
-
-#__imagenet_stats = {'mean': [0.5, 0.5, 0.5],
-#                   'std': [0.5, 0.5, 0.5]}
 
 __imagenet_pca = {
     'eigval': torch.Tensor([0.2175, 0.0188, 0.0045]),
@@ -19,162 +21,97 @@ __imagenet_pca = {
 }
 
 
-def scale_crop(input_size, scale_size=None, normalize=__imagenet_stats):
-    t_list = [
-        transforms.ToTensor(),
-        transforms.Normalize(**normalize),
-    ]
-    #if scale_size != input_size:
-    #t_list = [transforms.Scale((960,540))] + t_list
+class Transformation():
 
-    return transforms.Compose(t_list)
+    global imagenet_stats
 
+    def __init__ (self, augment=True, center_crop=False):
+        assert not (augment and center_crop) # augment and center_crop can
+                                             # not be used together
 
-def scale_random_crop(input_size, scale_size=None, normalize=__imagenet_stats):
-    t_list = [
-        transforms.RandomCrop(input_size),
-        transforms.ToTensor(),
-        transforms.Normalize(**normalize),
-    ]
-    if scale_size != input_size:
-        t_list = [transforms.Scale(scale_size)] + t_list
+        self.augment = augment
+        self.center_crop = center_crop
+        if augment:
+            self.random_crop = RandomCrop(256, 512)
+            self.aug_transform = ColorJitter(0.6, 0.6, 0.6, 0.25)
 
-    transforms.Compose(t_list)
+        if center_crop:
+            self.normalize = transforms.Normalize(**imagenet_stats)
+            self.center_crop = CenterCrop(376, 1240)
+        else:
+            self.normalize = transforms.Compose([transforms.ToTensor(),
+                transforms.Normalize(**imagenet_stats)])
 
+    def __call__(self, left, right, disp):
+        if self.center_crop:
+            left, right, disp = self.center_crop(left, right, disp)
 
-def pad_random_crop(input_size, scale_size=None, normalize=__imagenet_stats):
-    padding = int((scale_size - input_size) / 2)
-    return transforms.Compose([
-        transforms.RandomCrop(input_size, padding=padding),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(**normalize),
-    ])
+        if not self.center_crop:
+            disp = torch.squeeze(to_tensor(disp))
+        if self.augment:
+            left, right, disp = self.random_crop(left, right, disp)
+            left, right = self.aug_transform(left, right)
 
+        return self.normalize(left), self.normalize(right), torch.squeeze(disp)
 
-def inception_preproccess(input_size, normalize=__imagenet_stats):
-    return transforms.Compose([
-        transforms.RandomSizedCrop(input_size),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(**normalize)
-    ])
-def inception_color_preproccess(input_size, normalize=__imagenet_stats):
-    return transforms.Compose([
-        #transforms.RandomSizedCrop(input_size),
-        #transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        ColorJitter(
-            brightness=0.4,
-            contrast=0.4,
-            saturation=0.4,
-        ),
-        Lighting(0.1, __imagenet_pca['eigval'], __imagenet_pca['eigvec']),
-        transforms.Normalize(**normalize)
-    ])
+class CenterCrop():
+    def __init__(self, th, tw):
+        self.crop = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.CenterCrop([th, tw])
+            ])
+    def __call__(self, left, right, disp):
+        disp = self.crop(disp)
+        left = self.crop(left)
+        right = self.crop(right)
+        return left, right, disp
 
 
-def get_transform(name='imagenet', input_size=None,
-                  scale_size=None, normalize=None, augment=True):
-    normalize = __imagenet_stats
-    input_size = 256
-    if augment:
-            return inception_color_preproccess(input_size, normalize=normalize)
-    else:
-            return scale_crop(input_size=input_size,
-                              scale_size=scale_size, normalize=normalize)
+class RandomCrop():
+    def __init__(self, th, tw):
+        self.th = th
+        self.tw = tw
+
+    def __call__(self, left, right, disp):
+        w, h = left.size
+
+        w_low = random.randint(0, w - self.tw)
+        h_low = random.randint(0, h - self.th)
+
+        w_top = w_low + self.tw
+        h_top = h_low + self.th
+
+        left = left.crop((w_low, h_low, w_top, h_top))
+        right = right.crop((w_low, h_low, w_top, h_top))
+
+        disp = disp[h_low:h_top, w_low:w_top]
+        return left, right, disp
 
 
+class ColorJitter(object):
+    def __init__(self, brightness, contrast, saturation, hue):
+        self.b_max = 1+brightness
+        self.b_min = max(0.0, 1-brightness)
+        self.c_max = 1+contrast
+        self.c_min = max(0.0, 1-contrast)
+        self.s_max = 1+saturation
+        self.s_min = max(0.0, 1-saturation)
+        self.h_max = hue
+        self.h_min = hue
 
+    def __call__(self, left, right):
+        b = rand.uniform(self.b_min, self.b_max)
+        c = rand.uniform(self.c_min, self.c_max)
+        s = rand.uniform(self.s_min, self.s_max)
+        h = rand.uniform(self.h_min, self.h_max)
 
-class Lighting(object):
-    """Lighting noise(AlexNet - style PCA - based noise)"""
+        left = F.adjust_brightness(left, b)
+        left = F.adjust_contrast(left, c)
+        left = F.adjust_saturation(left, s)
+        left = F.adjust_hue(left, h)
 
-    def __init__(self, alphastd, eigval, eigvec):
-        self.alphastd = alphastd
-        self.eigval = eigval
-        self.eigvec = eigvec
-
-    def __call__(self, img):
-        if self.alphastd == 0:
-            return img
-
-        alpha = img.new().resize_(3).normal_(0, self.alphastd)
-        rgb = self.eigvec.type_as(img).clone()\
-            .mul(alpha.view(1, 3).expand(3, 3))\
-            .mul(self.eigval.view(1, 3).expand(3, 3))\
-            .sum(1).squeeze()
-
-        return img.add(rgb.view(3, 1, 1).expand_as(img))
-
-
-class Grayscale(object):
-
-    def __call__(self, img):
-        gs = img.clone()
-        gs[0].mul_(0.299).add_(0.587, gs[1]).add_(0.114, gs[2])
-        gs[1].copy_(gs[0])
-        gs[2].copy_(gs[0])
-        return gs
-
-
-class Saturation(object):
-
-    def __init__(self, var):
-        self.var = var
-
-    def __call__(self, img):
-        gs = Grayscale()(img)
-        alpha = random.uniform(0, self.var)
-        return img.lerp(gs, alpha)
-
-
-class Brightness(object):
-
-    def __init__(self, var):
-        self.var = var
-
-    def __call__(self, img):
-        gs = img.new().resize_as_(img).zero_()
-        alpha = random.uniform(0, self.var)
-        return img.lerp(gs, alpha)
-
-
-class Contrast(object):
-
-    def __init__(self, var):
-        self.var = var
-
-    def __call__(self, img):
-        gs = Grayscale()(img)
-        gs.fill_(gs.mean())
-        alpha = random.uniform(0, self.var)
-        return img.lerp(gs, alpha)
-
-
-class RandomOrder(object):
-    """ Composes several transforms together in random order.
-    """
-
-    def __init__(self, transforms):
-        self.transforms = transforms
-
-    def __call__(self, img):
-        if self.transforms is None:
-            return img
-        order = torch.randperm(len(self.transforms))
-        for i in order:
-            img = self.transforms[i](img)
-        return img
-
-
-class ColorJitter(RandomOrder):
-
-    def __init__(self, brightness=0.4, contrast=0.4, saturation=0.4):
-        self.transforms = []
-        if brightness != 0:
-            self.transforms.append(Brightness(brightness))
-        if contrast != 0:
-            self.transforms.append(Contrast(contrast))
-        if saturation != 0:
-            self.transforms.append(Saturation(saturation))
+        right = F.adjust_brightness(right, b)
+        right = F.adjust_contrast(right, c)
+        right = F.adjust_saturation(right, s)
+        right = F.adjust_hue(right, h)
+        return left, right

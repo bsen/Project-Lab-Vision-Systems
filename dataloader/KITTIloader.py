@@ -6,6 +6,7 @@ from PIL import Image
 from tqdm import tqdm
 import os.path
 from .my_utils import device
+from . import preprocess
 import numpy as np
 
 left_folder = 'datasets/kitti2015/training/image_2/'
@@ -16,26 +17,14 @@ class KittiDataset(torch.utils.data.Dataset):
     """A class loading the KITTI 2015 scene flow dataset.
     """
 
-    def __init__(self, set_type, transform=None):
-        """
-        We advise to use the following transformation for training:
-            transform = transforms.Compose([
-                transforms.ColorJitter(0.2, 0.2, 0.2, 0.05),
-                transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])]
-            )
-        We advise to use the following transformation for testing and validation:
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])]
-
-        Other than normalizations and color-jitters, no transformations are allowed.
-        The images automatically get reduced to size (256, 512) in training and
-        to size (376, 1240) in testing and validation.
-        """
+    def __init__(self, set_type):
         assert set_type in ['train', 'val', 'test']
         self.set_type = set_type
-        self.transform = transform
 
         if set_type == "test":
             img_indices = list(range(150, 200))
+            self.preprocess = preprocess.Transformation(augment=False,
+                                                        center_crop=True)
         else:
             # a random permutation of range(150) to split the data randomly into
             # validation and training sets
@@ -57,16 +46,18 @@ class KittiDataset(torch.utils.data.Dataset):
                                 42, 126, 35, 103, 88, 64, 41, 70, 34, 45]
             if set_type == 'train':
                 img_indices = possible_indices[:125]
+                self.preprocess = preprocess.Transformation(augment=True,
+                                                            center_crop=False)
             if set_type == 'val':
                 img_indices = possible_indices[125:]
+                self.preprocess = preprocess.Transformation(augment=False,
+                                                            center_crop=True)
 
         self.length = len(img_indices)
 
         self.left_images = []
         self.right_images = []
         self.left_disparity = []
-
-
 
         for file_num in img_indices:
             file_name = str(file_num).rjust(6, '0') + '_10.png'
@@ -75,50 +66,13 @@ class KittiDataset(torch.utils.data.Dataset):
             self.right_images.append(os.path.join(right_folder, file_name))
             self.left_disparity.append(os.path.join(disp_folder, file_name))
 
-        if self.set_type in ['test', 'val']:
-            self.center_crop = torchvision.transforms.CenterCrop((376, 1240))
-
     def __getitem__(self, idx):
-        left = to_tensor(Image.open(self.left_images[idx]))
-        right = to_tensor(Image.open(self.right_images[idx]))
-        disp = torch.squeeze(to_tensor(Image.open(self.left_disparity[idx])))
+        left = Image.open(self.left_images[idx])
+        right = Image.open(self.right_images[idx])
+        disp = Image.open(self.left_disparity[idx])
 
-        if self.set_type in ['test', 'val']:
-            left_right_image = torch.empty([2, 3, 376, 1240])
-            # disparity = self.center_crop(self.left_disparity[idx])
-            disparity = self.center_crop(disp)
-
-            # left_right_image[0] = self.center_crop(self.left_images[idx])
-            left_right_image[0] = self.center_crop(left)
-            # left_right_image[1] = self.center_crop(self.right_images[idx])
-            left_right_image[1] = self.center_crop(right)
-        else:
-            # the set type is training
-            # here we construct a random patch of size (256, 512) of the image
-
-            # orig_shape = self.left_images[0].shape
-            orig_shape = left.shape
-            start_h = np.random.randint(orig_shape[-2] - 256)
-            end_h = start_h + 256
-            start_w = np.random.randint(orig_shape[-1] - 512)
-            end_w = start_w + 512
-
-            #left_image = self.left_images[idx][:, start_h:end_h, start_w:end_w]
-            #right_image = self.right_images[idx][:, start_h:end_h, start_w:end_w]
-            #disparity = self.left_disparity[idx][start_h:end_h, start_w:end_w]
-
-            left_image = left[:, start_h:end_h, start_w:end_w]
-            right_image = right[:, start_h:end_h, start_w:end_w]
-            disparity = disp[start_h:end_h, start_w:end_w]
-
-            left_right_image = torch.empty([2, 3, 256, 512])
-            left_right_image[0] = left_image
-            left_right_image[1] = right_image
-
-        if self.transform is not None:
-            left_right_image = self.transform(left_right_image)
-
-        return left_right_image[0], left_right_image[1], disparity
+        left, right, disp = self.preprocess(left, right, disp)
+        return left, right, disp
 
     def __len__(self):
         return self.length
