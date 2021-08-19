@@ -5,9 +5,11 @@ from torchvision.transforms.functional import to_tensor
 from PIL import Image
 from tqdm import tqdm
 import os.path
-from .my_utils import device
 from . import preprocess
 import numpy as np
+import sys
+sys.path.insert(0, '../')
+from my_utils import device
 
 left_folder = 'datasets/kitti2015/training/image_2/'
 right_folder = 'datasets/kitti2015/training/image_3/'
