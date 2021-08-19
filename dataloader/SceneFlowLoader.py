@@ -7,6 +7,7 @@ from PIL import Image
 from . import preprocess
 from . import readpfm as rp
 import numpy as np
+import numpy.random as rand
 
 
 IMG_EXTENSIONS = [
@@ -24,11 +25,12 @@ def disparity_loader(path):
     return rp.readPFM(path)
 
 class myImageFolder(data.Dataset):
-    def __init__(self, left, right, left_disparity, training, loader=default_loader, dploader= disparity_loader):
 
+    def __init__(self, left, right, left_disparity, training, right_disparity=None, loader=default_loader, dploader= disparity_loader):
         self.left = left
         self.right = right
         self.disp_L = left_disparity
+        self.disp_R = right_disparity
         self.loader = loader
         self.dploader = dploader
         self.training = training
@@ -37,15 +39,25 @@ class myImageFolder(data.Dataset):
         else:
             self.preprocess = preprocess.Transformation(augment=False, center_crop=False)
 
-
     def __getitem__(self, index):
+
         left  = self.left[index]
         right = self.right[index]
-        disp_L= self.disp_L[index]
 
         left_img = self.loader(left)
         right_img = self.loader(right)
-        dataL, scaleL = self.dploader(disp_L)
+        if self.disp_R is not None and rand.randint(2)==0:
+            # with a probability of 0.5, we flip and swap the images and
+            # use the flipped right disparity
+            left_img, right_img = right_img.transpose(Image.FLIP_LEFT_RIGHT), left_img.transpose(Image.FLIP_LEFT_RIGHT)
+
+            disp_L= self.disp_R[index] #has to be flipped
+            dataL, scaleL = self.dploader(disp_L)
+            dataL = np.fliplr(dataL)
+        else:
+            disp_L= self.disp_L[index]
+            dataL, scaleL = self.dploader(disp_L)
+
         dataL = np.ascontiguousarray(dataL, dtype=np.float32)
 
         left_img, right_img, dataL = self.preprocess(left_img, right_img, dataL)
