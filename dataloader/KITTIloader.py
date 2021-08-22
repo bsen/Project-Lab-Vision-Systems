@@ -73,7 +73,7 @@ class KittiDataset(torch.utils.data.Dataset):
         disp = Image.open(self.left_disparity[idx])
 
         left, right, disp = self.preprocess(left, right, disp)
-        return left, right, disp
+        return left, right, disp/256.0
 
     def __len__(self):
         return self.length
