@@ -1,12 +1,7 @@
 import torch
-import torchvision
-import torchvision.transforms as transforms
-from torchvision.transforms.functional import to_tensor
 from PIL import Image
-from tqdm import tqdm
 import os.path
 from . import preprocess
-import numpy as np
 import sys
 sys.path.insert(0, '../')
 from my_utils import device
@@ -20,6 +15,10 @@ class KittiDataset(torch.utils.data.Dataset):
     """
 
     def __init__(self, set_type):
+        """
+        :param set_type: Indicates whether the dataset is used for training,
+                         validation or testing (can be set to 'train', 'val' or 'test').
+        """
         assert set_type in ['train', 'val', 'test']
         self.set_type = set_type
 

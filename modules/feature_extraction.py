@@ -3,7 +3,8 @@ import torch.nn as nn
 
 
 class FeatureExtractor(nn.Module):
-    """The siamese feature extractor.
+    """
+    The siamese feature extractor.
     Gets as input one tensor of shape (B, 3, H, W) and outputs a tensor of
     shape (B, 32, H/4, W/4).
     """

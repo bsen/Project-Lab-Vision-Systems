@@ -1,5 +1,4 @@
-# from https://github.com/JiaRenChang/PSMNet/blob/master/dataloader/listflowfile.py
-# We added some comments
+# Strongly inspired by https://github.com/JiaRenChang/PSMNet/blob/master/dataloader/listflowfile.py
 import torch.utils.data as data
 
 from PIL import Image
