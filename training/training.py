@@ -2,12 +2,14 @@ import numpy as np
 import torch
 from torchvision.utils import save_image
 import os
-from .loss_functions import smoothL1, three_pixel_err
+from .loss_functions import three_pixel_err, smoothL1
+import time
 
 import sys
 sys.path.insert(0, '../')
 from my_utils import device, base_path
 
+f_smoothL1 = smoothL1(1.0)
 
 def train_model(model, optimizer, scheduler, train_loader,
                 num_epochs, valid_loader=None, savefile=None, mes_time=False,
@@ -68,7 +70,7 @@ def train_model(model, optimizer, scheduler, train_loader,
                 f=path)
 
     if valid_loader is not None:
-        return *pre_losses, *losses, time_taken
+        return pre_losses, losses, time_taken
     return time_taken
 
 
@@ -81,7 +83,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         train_loss = []
         loss_iters = []
         val_loss =  []
-        val_acc = []
+        val_err = []
     print('Epoch:')
     for epoch in range(num_epochs):
         print(str(epoch), end=', ')
@@ -89,9 +91,9 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         # validation epoch
         model.eval()  # important for dropout and batch norms
         if keep_loss and (epoch % 5 == 0 or epoch == num_epochs - 1):
-            loss_acc = _eval_model(model=model, valid_loader=valid_loader)
-            val_loss.append(loss_acc[0])
-            val_acc.append(loss_acc[1])
+            loss_err = _eval_model(model=model, valid_loader=valid_loader)
+            val_loss.append(loss_err[0])
+            val_err.append(loss_err[1])
 
         # training epoch
         model.train()  # important for dropout and batch norms
@@ -108,7 +110,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
     print("\nTraining completed")
 
     if keep_loss:
-        return train_loss, loss_iters, val_loss, val_acc
+        return train_loss, loss_iters, val_loss, val_err
     return None
 
 
@@ -120,6 +122,7 @@ def _train_epoch(model, train_loader, optimizer, keep_loss):
     for (left, right, true_disp) in train_loader:
         left = left.to(device)
         right = right.to(device)
+        true_disp = true_disp.to(device)
 
         # Clear gradients w.r.t. parameters
         optimizer.zero_grad()
@@ -128,9 +131,9 @@ def _train_epoch(model, train_loader, optimizer, keep_loss):
         pred_disp = model(left, right)
 
         # Calculate Loss
-        loss = smoothL1(true_disp, pred_disp)
+        loss = f_smoothL1(true_disp, pred_disp)
         if keep_loss:
-            loss_list.append(loss)
+            loss_list.append(loss.item())
 
         # Getting gradients w.r.t. parameters
         loss.backward()
@@ -150,22 +153,23 @@ def _train_epoch(model, train_loader, optimizer, keep_loss):
 def _eval_model(model, valid_loader):
     """ Evaluating the model for either validation or test """
     loss_list = []
-    acc_list = []
+    err_list = []
 
     for i, (left, right, true_disp) in enumerate(valid_loader):
         left = left.to(device)
         right = right.to(device)
+        true_disp = true_disp.to(device)
 
         # Forward pass
-        pred_disp = model(images)
+        pred_disp = model(left, right)
 
-        loss = smoothL1(true_disp, pred_disp)
-        acc = three_pixel_err(true_disp, pred_disp)
-        loss_list.append(loss)
-        acc_list.append(acc)
+        loss = f_smoothL1(true_disp, pred_disp)
+        err = three_pixel_err(true_disp, pred_disp)
+        loss_list.append(loss.item())
+        err_list.append(err.item())
 
     # Total correct predictions and loss
     loss = np.mean(loss_list)
-    acc = np.mean(acc_list
+    err = np.mean(err_list)
 
-    return loss, acc
+    return loss, err

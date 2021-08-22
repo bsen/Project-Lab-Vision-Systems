@@ -21,6 +21,6 @@ class OurNet(nn.Module):
         left_feats = self.feature_extraction(left)
         right_feats = self.feature_extraction(right)
 
-        cost = self.cost_processing(left, right)
+        cost = self.cost_processing(left_feats, right_feats)
         disp = self.regressor(cost)
         return disp

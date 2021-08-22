@@ -27,7 +27,7 @@ class Regressor(nn.Module):
 
         # upsample
         cost = F.interpolate(x, size=[Disp, H, W], mode='trilinear')
-        cost = torch.squeeze(cost)
+        cost = torch.squeeze(cost, dim=1)
 
         # channelwise softmax
         cost = F.softmax(cost, dim=1)
@@ -35,4 +35,4 @@ class Regressor(nn.Module):
         # weight & sum
         output = self.weight_sum(cost)
 
-        return torch.squeeze(output)
+        return torch.squeeze(output, dim=1)

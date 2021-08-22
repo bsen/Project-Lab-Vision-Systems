@@ -4,7 +4,7 @@ import os.path
 from . import preprocess
 import sys
 sys.path.insert(0, '../')
-from my_utils import device
+from my_utils import device, base_path
 
 left_folder = 'datasets/kitti2015/training/image_2/'
 right_folder = 'datasets/kitti2015/training/image_3/'
@@ -63,9 +63,9 @@ class KittiDataset(torch.utils.data.Dataset):
         for file_num in img_indices:
             file_name = str(file_num).rjust(6, '0') + '_10.png'
 
-            self.left_images.append(os.path.join(left_folder, file_name))
-            self.right_images.append(os.path.join(right_folder, file_name))
-            self.left_disparity.append(os.path.join(disp_folder, file_name))
+            self.left_images.append(os.path.join(base_path, left_folder, file_name))
+            self.right_images.append(os.path.join(base_path, right_folder, file_name))
+            self.left_disparity.append(os.path.join(base_path, disp_folder, file_name))
 
     def __getitem__(self, idx):
         left = Image.open(self.left_images[idx])

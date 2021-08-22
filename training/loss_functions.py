@@ -26,6 +26,7 @@ class smoothL1:
         L1 = t_minus_p - 0.5*self.beta
 
         use_L2 = (t_minus_p <= self.beta)
+        use_L1 = torch.logical_not(use_L2)
 
         L = (L2*(torch.logical_and(mask, use_L2))).sum(dim=[1,2])
         L += (L1*(torch.logical_and(mask, use_L1))).sum(dim=[1,2])
