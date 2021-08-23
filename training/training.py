@@ -42,6 +42,8 @@ def train_model(model, optimizer, scheduler, train_loader,
     if pretrain_loader is not None:
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs);
+    else:
+        pre_losses = None
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs)
 
@@ -61,16 +63,27 @@ def train_model(model, optimizer, scheduler, train_loader,
                 },
                 f=path)
         else:
-            torch.save(
-                {
-                    'model': model,
-                    'pre_losses': pre_losses,
-                    'losses': losses
-                },
-                f=path)
+            if pre_losses is None:
+                torch.save(
+                    {
+                        'model': model,
+                        'losses': losses
+                    },
+                    f=path)
+            else:
+                torch.save(
+                    {
+                        'model': model,
+                        'pre_losses': pre_losses,
+                        'losses': losses
+                    },
+                    f=path)
 
     if valid_loader is not None:
-        return pre_losses, losses, time_taken
+        if pre_losses is None:
+            return losses, time_taken
+        else:
+            return pre_losses, losses, time_taken
     return time_taken
 
 
@@ -90,7 +103,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
 
         # validation epoch
         model.eval()  # important for dropout and batch norms
-        if keep_loss and (epoch % 5 == 0 or epoch == num_epochs - 1):
+        if keep_loss:
             loss_err = _eval_model(model=model, valid_loader=valid_loader)
             val_loss.append(loss_err[0])
             val_err.append(loss_err[1])
@@ -132,6 +145,7 @@ def _train_epoch(model, train_loader, optimizer, keep_loss):
 
         # Calculate Loss
         loss = f_smoothL1(true_disp, pred_disp)
+
         if keep_loss:
             loss_list.append(loss.item())
 
@@ -143,6 +157,7 @@ def _train_epoch(model, train_loader, optimizer, keep_loss):
 
     if keep_loss:
         mean_loss = np.mean(loss_list)
+        print(f' train loss: {mean_loss}')
 
         return mean_loss, loss_list
 
@@ -171,5 +186,6 @@ def _eval_model(model, valid_loader):
     # Total correct predictions and loss
     loss = np.mean(loss_list)
     err = np.mean(err_list)
+    print(f' eval loss: {loss}, eval err: {err}')
 
     return loss, err
