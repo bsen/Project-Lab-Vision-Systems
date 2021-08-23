@@ -4,6 +4,7 @@ from torchvision.utils import save_image
 import os
 from .loss_functions import three_pixel_err, smoothL1
 import time
+import torch.cuda.amp as amp
 
 import sys
 sys.path.insert(0, '../')
@@ -14,7 +15,7 @@ f_smoothL1 = smoothL1(1.0)
 def train_model(model, optimizer, scheduler, train_loader,
                 num_epochs, valid_loader=None, savefile=None, mes_time=False,
                 pretrain_optimizer=None, pretrain_scheduler=None,
-                pretrain_loader=None, pretrain_epochs=None):
+                pretrain_loader=None, pretrain_epochs=None, use_amp=True):
     """
     Training a model for a given number of epochs.
 
@@ -34,6 +35,9 @@ def train_model(model, optimizer, scheduler, train_loader,
     :param pretrain_scheduler: The scheduler used for pretraining (optional)
     :param pretrain_loader: The DataLoader for the pretrain dataset (optional)
     :param pretrain_epochs: The number of epochs for pretraining (optional)
+    :param use_amp: Determines whether or not to use automatic mixed precision
+                    for training the network (as explained here:
+                    https://pytorch.org/docs/stable/notes/amp_examples.html)
     """
 
     if mes_time:
@@ -41,11 +45,13 @@ def train_model(model, optimizer, scheduler, train_loader,
 
     if pretrain_loader is not None:
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
-                             pretrain_loader, valid_loader, pretrain_epochs);
+                             pretrain_loader, valid_loader, pretrain_epochs,
+                             use_amp=use_amp)
     else:
         pre_losses = None
     losses = _train_model_no_time(model, optimizer, scheduler,
-                         train_loader, valid_loader, num_epochs)
+                         train_loader, valid_loader, num_epochs,
+                         use_amp=use_amp)
 
     if mes_time:
         end = time.time()
@@ -88,9 +94,11 @@ def train_model(model, optimizer, scheduler, train_loader,
 
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
-                         valid_loader, num_epochs):
+                         valid_loader, num_epochs, use_amp):
     """Train the model not measuring time"""
     keep_loss = valid_loader is not None
+
+    scaler = amp.GradScaler(enabled=use_amp)
 
     if keep_loss:
         train_loss = []
@@ -112,7 +120,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         model.train()  # important for dropout and batch norms
         mean_list = _train_epoch(
                 model=model, train_loader=train_loader, optimizer=optimizer,
-                keep_loss=keep_loss
+                keep_loss=keep_loss, scaler=scaler, use_amp=use_amp
             )
         scheduler.step()
 
@@ -127,7 +135,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
     return None
 
 
-def _train_epoch(model, train_loader, optimizer, keep_loss):
+def _train_epoch(model, train_loader, optimizer, keep_loss, scaler, use_amp):
     """ Training a model for one epoch """
     if keep_loss:
         loss_list = []
@@ -140,20 +148,21 @@ def _train_epoch(model, train_loader, optimizer, keep_loss):
         # Clear gradients w.r.t. parameters
         optimizer.zero_grad()
 
-        # Forward pass
-        pred_disp = model(left, right)
-
-        # Calculate Loss
-        loss = f_smoothL1(true_disp, pred_disp)
+        # Forward pass and calculate loss
+        with amp.autocast(enabled=use_amp):
+            pred_disp = model(left, right)
+            loss = f_smoothL1(true_disp, pred_disp)
 
         if keep_loss:
             loss_list.append(loss.item())
 
         # Getting gradients w.r.t. parameters
-        loss.backward()
-
+        scaler.scale(loss).backward()
         # Updating parameters
-        optimizer.step()
+        scaler.step(optimizer)
+        # Update the scale
+        scaler.update()
+
 
     if keep_loss:
         mean_loss = np.mean(loss_list)
