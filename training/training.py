@@ -5,6 +5,7 @@ import os
 from .loss_functions import three_pixel_err, smoothL1
 import time
 import torch.cuda.amp as amp
+import torch.utils.tensorboard as tb
 
 import sys
 sys.path.insert(0, '../')
@@ -13,9 +14,11 @@ from my_utils import device, base_path
 f_smoothL1 = smoothL1(1.0)
 
 def train_model(model, optimizer, scheduler, train_loader,
-                num_epochs, valid_loader=None, savefile=None, mes_time=False,
+                num_epochs, log_dir,
+                valid_loader=None, savefile=None, mes_time=False,
                 pretrain_optimizer=None, pretrain_scheduler=None,
-                pretrain_loader=None, pretrain_epochs=None, use_amp=True):
+                pretrain_loader=None, pretrain_epochs=None, use_amp=True,
+                show_graph=False):
     """
     Training a model for a given number of epochs.
 
@@ -26,6 +29,8 @@ def train_model(model, optimizer, scheduler, train_loader,
     :param valid_loader: The DataLoader for the validation dataset (optional).
                          If this is None, also no other losses get stored.
     :param num_epochs: The number of epochs we train for
+    :param log_dir: The directory, tensorboard should log to
+                    (in the folders runs/train/ and runs/pretrain/ )
     :param savefile: If given, the model, training loss, validation loss,
                      the loss in the different iterations and the measured
                      time get stored in the file savefile.
@@ -38,20 +43,30 @@ def train_model(model, optimizer, scheduler, train_loader,
     :param use_amp: Determines whether or not to use automatic mixed precision
                     for training the network (as explained here:
                     https://pytorch.org/docs/stable/notes/amp_examples.html)
+    :param show_graph: whether or not to show the network graph in the tensor board
     """
+
+    writer = tb.SummaryWriter(os.path.join(base_path, 'runs/train/', log_dir))
+
+    if show_graph:
+        sample = next(iter(train_loader))
+        left = sample[0].to(device)
+        right = sample[1].to(device)
+        writer.add_graph(model, (left, right))
 
     if mes_time:
         start = time.time()
 
     if pretrain_loader is not None:
+        pre_writer = tb.SummaryWriter(os.path.join('runs/pretrain/', log_dir))
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs,
-                             use_amp=use_amp)
+                             use_amp=use_amp, writer=pre_writer)
     else:
         pre_losses = None
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
-                         use_amp=use_amp)
+                         use_amp=use_amp, writer=writer)
 
     if mes_time:
         end = time.time()
@@ -94,7 +109,7 @@ def train_model(model, optimizer, scheduler, train_loader,
 
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
-                         valid_loader, num_epochs, use_amp):
+                         valid_loader, num_epochs, use_amp, writer):
     """Train the model not measuring time"""
     keep_loss = valid_loader is not None
 
@@ -112,21 +127,26 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         # validation epoch
         model.eval()  # important for dropout and batch norms
         if keep_loss:
-            loss_err = _eval_model(model=model, valid_loader=valid_loader)
-            val_loss.append(loss_err[0])
-            val_err.append(loss_err[1])
+            v_loss, v_err = _eval_model(model=model, valid_loader=valid_loader)
+            val_loss.append(v_loss)
+            val_err.append(v_err)
+            writer.add_scalar('validation loss', v_loss)
+            writer.add_scalar('validation error', v_err)
 
         # training epoch
         model.train()  # important for dropout and batch norms
-        mean_list = _train_epoch(
+        loss_list = _train_epoch(
                 model=model, train_loader=train_loader, optimizer=optimizer,
                 keep_loss=keep_loss, scaler=scaler, use_amp=use_amp
             )
         scheduler.step()
 
         if keep_loss:
-            train_loss.append(mean_list[0])
-            loss_iters += mean_list[1]
+            mean_loss = np.mean(loss_list)
+            print(f' train loss: {mean_loss}')
+            train_loss.append(mean_loss)
+            loss_iters += loss_list
+            writer.add_scalar('training loss', mean_loss)
 
     print("\nTraining completed")
 
@@ -165,10 +185,7 @@ def _train_epoch(model, train_loader, optimizer, keep_loss, scaler, use_amp):
 
 
     if keep_loss:
-        mean_loss = np.mean(loss_list)
-        print(f' train loss: {mean_loss}')
-
-        return mean_loss, loss_list
+        return loss_list
 
     return None
 
