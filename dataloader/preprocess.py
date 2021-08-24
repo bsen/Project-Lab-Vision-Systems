@@ -33,7 +33,7 @@ class Transformation():
         self.center_crop = center_crop
         if augment:
             self.random_crop = RandomCrop(256, 512)
-            self.aug_transform = ColorJitter(0.6, 0.6, 0.6, 0.25)
+            self.aug_transform = ColorJitter(0.2, 0.2, 0.2, 0.05)
 
         if center_crop:
             self.normalize = transforms.Normalize(**imagenet_stats)
