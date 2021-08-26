@@ -3,9 +3,11 @@
 import torch
 import torchvision.transforms as transforms
 import random
+import numpy as np
 import numpy.random as rand
 import torchvision.transforms.functional as F
 from torchvision.transforms.functional import to_tensor
+from PIL import Image
 
 
 imagenet_stats = {'mean': [0.485, 0.456, 0.406],
@@ -51,6 +53,7 @@ class Transformation():
         if self.augment:
             left, right, disp = self.random_crop(left, right, disp)
             left, right = self.aug_transform(left, right)
+            left, right, disp = random_flip(left, right, disp)
 
         return self.normalize(left), self.normalize(right), torch.squeeze(disp)
 
@@ -115,3 +118,13 @@ class ColorJitter(object):
         right = F.adjust_saturation(right, s)
         right = F.adjust_hue(right, h)
         return left, right
+
+def random_flip(left, right, disparity):
+    """
+    With probability 0.5 returns left, right and disparity flipped on upside down.
+    """
+    if rand.randint(2)==0:
+        left = left.transpose(Image.FLIP_TOP_BOTTOM)
+        right = right.transpose(Image.FLIP_TOP_BOTTOM)
+        disparity = torch.flip(disparity, dims=[-2])
+    return left, right, disparity
