@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 
 import sys
 sys.path.insert(0, '../')
@@ -16,6 +17,9 @@ class smoothL1:
         The parameters should be of size (B, H, W).
         Pixels where the target disparity is 0.0 are ignored.
         """
+        assert len(target.shape) == 3
+        assert len(prediction.shape) == 3
+        
         mask = (target != 0.0)
 
         # the number of elements which are unequal to 0.0 in each batch:
@@ -32,8 +36,17 @@ class smoothL1:
         L += (L1*(torch.logical_and(mask, use_L1))).sum(dim=[1,2])
 
         return torch.mean(L/N_i)
-
-
+    
+class smoothL1_angel:
+    def __init__(self, beta):
+        self.nnSmoothL1 = nn.SmoothL1Loss(beta=beta)
+        print('smoothL1_angel')
+        
+    def __call__(self, target, prediction):
+        mask = (target > 0.0)
+        mask.detach_()
+        return self.nnSmoothL1(prediction[mask], target[mask])
+        
 def three_pixel_err(target, prediction):
     """
     The 3-pixel error.

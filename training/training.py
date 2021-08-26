@@ -2,8 +2,9 @@ import numpy as np
 import torch
 from torchvision.utils import save_image
 import os
-from .loss_functions import three_pixel_err, smoothL1
+from .loss_functions import three_pixel_err, smoothL1, smoothL1_angel
 import time
+import datetime
 import torch.cuda.amp as amp
 import torch.utils.tensorboard as tb
 
@@ -11,7 +12,9 @@ import sys
 sys.path.insert(0, '../')
 from my_utils import device, base_path
 
-f_smoothL1 = smoothL1(1.0)
+#f_smoothL1 = smoothL1(1.0)
+f_smoothL1 = smoothL1_angel(1.0)
+
 
 def train_model(model, optimizer, scheduler, train_loader,
                 num_epochs, log_dir,
@@ -43,10 +46,11 @@ def train_model(model, optimizer, scheduler, train_loader,
     :param use_amp: Determines whether or not to use automatic mixed precision
                     for training the network (as explained here:
                     https://pytorch.org/docs/stable/notes/amp_examples.html)
-    :param show_graph: whether or not to show the network graph in the tensor board
+    :param show_graph: whether or not to show the network graph in tensorboard
     """
 
     writer = tb.SummaryWriter(os.path.join(base_path, 'runs/train/', log_dir))
+    pretrain = pretrain_loader is not None
 
     if show_graph:
         sample = next(iter(train_loader))
@@ -57,54 +61,54 @@ def train_model(model, optimizer, scheduler, train_loader,
     if mes_time:
         start = time.time()
 
-    if pretrain_loader is not None:
+    if pretrain:
         pre_writer = tb.SummaryWriter(os.path.join('runs/pretrain/', log_dir))
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs,
                              use_amp=use_amp, writer=pre_writer)
-    else:
-        pre_losses = None
+    
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
                          use_amp=use_amp, writer=writer)
 
     if mes_time:
+        torch.cuda.synchronize()
         end = time.time()
         time_taken = end-start
-    else:
-        time_taken = None
+        print(f'Time taken for training: {str(datetime.timedelta(seconds=time_taken))}')
+        
 
 
     if savefile is not None:
-        path = os.path.join(base_path, savepath)
+        path = os.path.join(base_path, savefile)
         if valid_loader is None:
             torch.save(
                 {
-                    'model': model,
+                    'model_state_dict': model.state_dict(),
                 },
                 f=path)
         else:
-            if pre_losses is None:
+            if pretrain:
                 torch.save(
                     {
-                        'model': model,
+                        'model_state_dict': model.state_dict(),
+                        'pre_losses': pre_losses,
                         'losses': losses
                     },
                     f=path)
             else:
                 torch.save(
                     {
-                        'model': model,
-                        'pre_losses': pre_losses,
+                        'model_state_dict': model.state_dict(),
                         'losses': losses
                     },
                     f=path)
 
     if valid_loader is not None:
-        if pre_losses is None:
-            return losses, time_taken
+        if pretrain:
+            return pre_losses, losses
         else:
-            return pre_losses, losses, time_taken
+            return losses
     return time_taken
 
 
@@ -196,7 +200,7 @@ def _eval_model(model, valid_loader):
     loss_list = []
     err_list = []
 
-    for i, (left, right, true_disp) in enumerate(valid_loader):
+    for left, right, true_disp in valid_loader:
         left = left.to(device)
         right = right.to(device)
         true_disp = true_disp.to(device)
