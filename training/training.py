@@ -72,11 +72,12 @@ def train_model(model, optimizer, scheduler, train_loader,
             pre_writer = None
         else:
             pre_writer = tb.SummaryWriter(os.path.join(base_path, 'runs/', log_dir, 'pretrain/'))
+        print('pretraining:')
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs,
                              use_amp=use_amp, writer=pre_writer,
                              tune_checkpoint_dir=tune_checkpoint_dir)
-
+        print('training')
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
                          use_amp=use_amp, writer=writer)
