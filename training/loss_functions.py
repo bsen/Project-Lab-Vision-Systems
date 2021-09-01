@@ -9,7 +9,6 @@ from my_utils import device
 class smoothL1:
     def __init__(self, beta):
         self.nnSmoothL1 = nn.SmoothL1Loss(beta=beta)
-        print('smoothL1_angel')
 
     def __call__(self, target, prediction):
         mask = (target > 0.0)
