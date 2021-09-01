@@ -2,18 +2,18 @@ import numpy as np
 import torch
 from torchvision.utils import save_image
 import os
-from .loss_functions import three_pixel_err, smoothL1, smoothL1_angel
+from .loss_functions import three_pixel_err, smoothL1
 import time
 import datetime
 import torch.cuda.amp as amp
 import torch.utils.tensorboard as tb
+from ray import tune
 
 import sys
 sys.path.insert(0, '../')
 from my_utils import device, base_path
 
-#f_smoothL1 = smoothL1(1.0)
-f_smoothL1 = smoothL1_angel(1.0)
+f_smoothL1 = smoothL1(1.0)
 
 
 def train_model(model, optimizer, scheduler, train_loader,
@@ -21,7 +21,7 @@ def train_model(model, optimizer, scheduler, train_loader,
                 valid_loader=None, savefile=None, mes_time=False,
                 pretrain_optimizer=None, pretrain_scheduler=None,
                 pretrain_loader=None, pretrain_epochs=None, use_amp=True,
-                show_graph=False):
+                show_graph=False, tune_checkpoint_dir=None):
     """
     Training a model for a given number of epochs.
 
@@ -33,7 +33,8 @@ def train_model(model, optimizer, scheduler, train_loader,
                          If this is None, also no other losses get stored.
     :param num_epochs: The number of epochs we train for
     :param log_dir: The directory, tensorboard should log to
-                    (in the folders runs/train/ and runs/pretrain/ )
+                    (in the folders runs/log_dir/train/ and runs/log_dir/pretrain/ )
+                    If set to None, tensorboard will not log
     :param savefile: If given, the model, training loss, validation loss,
                      the loss in the different iterations and the measured
                      time get stored in the file savefile.
@@ -47,9 +48,14 @@ def train_model(model, optimizer, scheduler, train_loader,
                     for training the network (as explained here:
                     https://pytorch.org/docs/stable/notes/amp_examples.html)
     :param show_graph: whether or not to show the network graph in tensorboard
+    :param tune_checkpoint_dir: when using raytune, specify the checkpoint directory
+                                here
     """
 
-    writer = tb.SummaryWriter(os.path.join(base_path, 'runs/train/', log_dir))
+    if log_dir is None:
+        writer = None
+    else:
+        writer = tb.SummaryWriter(os.path.join(base_path, 'runs/', log_dir, 'train/'))
     pretrain = pretrain_loader is not None
 
     if show_graph:
@@ -62,11 +68,15 @@ def train_model(model, optimizer, scheduler, train_loader,
         start = time.time()
 
     if pretrain:
-        pre_writer = tb.SummaryWriter(os.path.join('runs/pretrain/', log_dir))
+        if log_dir is None:
+            pre_writer = None
+        else:
+            pre_writer = tb.SummaryWriter(os.path.join(base_path, 'runs/', log_dir, 'pretrain/'))
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs,
-                             use_amp=use_amp, writer=pre_writer)
-    
+                             use_amp=use_amp, writer=pre_writer,
+                             tune_checkpoint_dir=tune_checkpoint_dir)
+
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
                          use_amp=use_amp, writer=writer)
@@ -76,7 +86,7 @@ def train_model(model, optimizer, scheduler, train_loader,
         end = time.time()
         time_taken = end-start
         print(f'Time taken for training: {str(datetime.timedelta(seconds=time_taken))}')
-        
+
 
 
     if savefile is not None:
@@ -113,7 +123,8 @@ def train_model(model, optimizer, scheduler, train_loader,
 
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
-                         valid_loader, num_epochs, use_amp, writer):
+                         valid_loader, num_epochs, use_amp, writer,
+                         tune_checkpoint_dir):
     """Train the model not measuring time"""
     keep_loss = valid_loader is not None
 
@@ -128,15 +139,6 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
     for epoch in range(num_epochs):
         print(str(epoch), end=', ')
 
-        # validation epoch
-        model.eval()  # important for dropout and batch norms
-        if keep_loss:
-            v_loss, v_err = _eval_model(model=model, valid_loader=valid_loader)
-            val_loss.append(v_loss)
-            val_err.append(v_err)
-            writer.add_scalar('validation loss', v_loss)
-            writer.add_scalar('validation error', v_err)
-
         # training epoch
         model.train()  # important for dropout and batch norms
         loss_list = _train_epoch(
@@ -150,7 +152,24 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
             print(f' train loss: {mean_loss}')
             train_loss.append(mean_loss)
             loss_iters += loss_list
-            writer.add_scalar('training loss', mean_loss)
+            if writer is not None:
+                writer.add_scalar('training loss', mean_loss)
+
+        # validation epoch
+        model.eval()  # important for dropout and batch norms
+        if keep_loss:
+            v_loss, v_err = _eval_model(model=model, valid_loader=valid_loader)
+            val_loss.append(v_loss)
+            val_err.append(v_err)
+            if writer is not None:
+                writer.add_scalar('validation loss', v_loss)
+                writer.add_scalar('validation error', v_err)
+
+        if (tune_checkpoint_dir is not None) and ((epoch==num_epochs-1) or (epoch%5 == 0)):
+            with tune.checkpoint_dir(epoch) as checkpoint_dir:
+                path = os.path.join(checkpoint_dir, "checkpoint")
+                torch.save((model.state_dict(), optimizer.state_dict()), path)
+            tune.report(loss=v_loss, err=v_err)
 
     print("\nTraining completed")
 
