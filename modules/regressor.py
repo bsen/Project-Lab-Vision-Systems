@@ -17,7 +17,7 @@ class Regressor(nn.Module):
 
     def __init__(self):
         super().__init__()
-        self.weight_sum = nn.Conv2d(in_channels=192, out_channels=1, kernel_size=1)
+        self.weight_sum = nn.Conv2d(in_channels=192, out_channels=1, kernel_size=1, bias=False)
 
     def forward(self, x):
         B, _, _, H4, W4 = x.shape
