@@ -21,7 +21,7 @@ def train_model(model, optimizer, scheduler, train_loader,
                 valid_loader=None, savefile=None, mes_time=False,
                 pretrain_optimizer=None, pretrain_scheduler=None,
                 pretrain_loader=None, pretrain_epochs=None, use_amp=True,
-                show_graph=False, tune_checkpoint_dir=None):
+                show_graph=False, tune_checkpoint_dir=None, sched_before_optim=False):
     """
     Training a model for a given number of epochs.
 
@@ -50,6 +50,8 @@ def train_model(model, optimizer, scheduler, train_loader,
     :param show_graph: whether or not to show the network graph in tensorboard
     :param tune_checkpoint_dir: when using raytune, specify the checkpoint directory
                                 here
+    :param sched_before_optim: If True, scheduler.step() gets called before the optimizer gets called
+                               (needed for the warmup learning implementation)
     """
 
     if log_dir is None:
@@ -76,11 +78,13 @@ def train_model(model, optimizer, scheduler, train_loader,
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs,
                              use_amp=use_amp, writer=pre_writer,
-                             tune_checkpoint_dir=tune_checkpoint_dir)
+                             tune_checkpoint_dir=tune_checkpoint_dir,
+                             sched_before_optim=sched_before_optim)
         print('training')
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
-                         use_amp=use_amp, writer=writer, tune_checkpoint_dir=tune_checkpoint_dir)
+                         use_amp=use_amp, writer=writer, tune_checkpoint_dir=tune_checkpoint_dir,
+                         sched_before_optim=sched_before_optim)
 
     if mes_time:
         torch.cuda.synchronize()
@@ -125,7 +129,7 @@ def train_model(model, optimizer, scheduler, train_loader,
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
                          valid_loader, num_epochs, use_amp, writer,
-                         tune_checkpoint_dir):
+                         tune_checkpoint_dir, sched_before_optim):
     """Train the model not measuring time"""
     keep_loss = valid_loader is not None
 
@@ -142,12 +146,15 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
 
         # training epoch
         model.train()  # important for dropout and batch norms
+        if sched_before_optim:
+            scheduler.step()
         loss_list = _train_epoch(
                 model=model, train_loader=train_loader, optimizer=optimizer,
                 keep_loss=keep_loss, scaler=scaler, use_amp=use_amp
             )
-        scheduler.step()
-
+        if not sched_before_optim:
+            scheduler.step()
+        
         if keep_loss:
             mean_loss = np.mean(loss_list)
             print(f' train loss: {mean_loss}')
