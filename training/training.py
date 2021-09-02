@@ -80,7 +80,7 @@ def train_model(model, optimizer, scheduler, train_loader,
         print('training')
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
-                         use_amp=use_amp, writer=writer)
+                         use_amp=use_amp, writer=writer, tune_checkpoint_dir=tune_checkpoint_dir)
 
     if mes_time:
         torch.cuda.synchronize()
