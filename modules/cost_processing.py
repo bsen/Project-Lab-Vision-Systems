@@ -13,22 +13,27 @@ class CostProcessing(nn.Module):
     Gets two tensors of shape (B, 32, H/4, W/4) as input and outputs
     a tensor of shape (B, 1, Disp/4, H/4, W/4).
     Here, Disp = 192"""
-    def __init__(self, channels=[64, 32, 16, 16, 1], kernel_sizes=[3,3,3,3]):
+    def __init__(self, channels=[64, 32, 32, 32, 32, 32, 32, 1], kernel_sizes=[64, 32, 32, 32, 32, 32, 32, 1], dropout_p=0.5):
         super().__init__()
         assert len(channels)-1 == len(kernel_sizes)
         self.channels = channels
 
         self.conv3d_blocks = nn.ModuleList()
-        for i in range(0, len(channels)-1):
+        for i in range(0, len(channels)-2):
             next_block = nn.Sequential(
                     nn.Conv3d(channels[i], channels[i+1], kernel_sizes[i],
                               padding=get_pad(kernel_sizes[i])),
+                    nn.BatchNorm3d(channels[i+1]),
+                    nn.Dropout(dropout_p),
                     nn.ReLU(),
                     nn.Conv3d(channels[i+1], channels[i+1], kernel_sizes[i],
-                              padding=get_pad(kernel_sizes[i]))
-                    # here we could add a ReLU
+                              padding=get_pad(kernel_sizes[i])),
+                    nn.BatchNorm3d(channels[i+1])
                     )
             self.conv3d_blocks.append(next_block)
+            
+        self.last_conv = nn.Conv3d(channels[-2], channels[-1], kernel_sizes[-1],
+                                   padding=get_pad(kernel_sizes[-1]))
 
     def forward(self, left, right):
         """
@@ -52,5 +57,6 @@ class CostProcessing(nn.Module):
                 cost = block(cost) + cost
             else:
                 cost = block(cost)
-
+        cost = self.last_conv(cost)
+        
         return cost

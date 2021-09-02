@@ -34,5 +34,9 @@ class Regressor(nn.Module):
 
         # weight & sum
         output = self.weight_sum(cost)
-
+        
+        # for output normalization:
+        output = output*192.0 
+        #output = output*90.0 - 4.0
+        
         return torch.squeeze(output, dim=1)
