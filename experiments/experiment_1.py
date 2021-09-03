@@ -21,21 +21,6 @@ kitti_val_loader = torch.utils.data.DataLoader(dataset=kitti_val, batch_size=1,
                                                shuffle=True)
 kitti_train = KittiDataset('train')
 
-# datasets for pretraining
-driv_left_img, driv_right_img, driv_left_disp, driv_right_disp,_,_,_,_ =\
-        lt.dataloader('datasets/scene_flow/', 'driving')
-for i, file in enumerate(driv_left_img):
-    driv_left_img[i] = os.path.join('/home/user/brank/project/Project-Lab-Vision-Systems', file)
-for i, file in enumerate(driv_right_img):
-    driv_right_img[i] = os.path.join('/home/user/brank/project/Project-Lab-Vision-Systems', file)
-for i, file in enumerate(driv_left_disp):
-    driv_left_disp[i] = os.path.join('/home/user/brank/project/Project-Lab-Vision-Systems', file)
-for i, file in enumerate(driv_right_disp):
-    driv_right_disp[i] = os.path.join('/home/user/brank/project/Project-Lab-Vision-Systems', file)
-
-pre_set = DA.myImageFolder(driv_left_img, driv_right_img, driv_left_disp, True, driv_right_disp)
-pre_loader = torch.utils.data.DataLoader(dataset=pre_set, batch_size=5, shuffle=True)
-
 # the configuration for the hyperparameter search
 config = {
         'lr': tune.loguniform(5e-8, 3e-3),
