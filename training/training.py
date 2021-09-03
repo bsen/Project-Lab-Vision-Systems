@@ -21,7 +21,7 @@ def train_model(model, optimizer, scheduler, train_loader,
                 valid_loader=None, savefile=None, mes_time=False,
                 pretrain_optimizer=None, pretrain_scheduler=None,
                 pretrain_loader=None, pretrain_epochs=None, use_amp=True,
-                show_graph=False, tune_checkpoint_dir=None, sched_before_optim=False):
+                show_graph=False, use_tune=False, sched_before_optim=False):
     """
     Training a model for a given number of epochs.
 
@@ -48,8 +48,8 @@ def train_model(model, optimizer, scheduler, train_loader,
                     for training the network (as explained here:
                     https://pytorch.org/docs/stable/notes/amp_examples.html)
     :param show_graph: whether or not to show the network graph in tensorboard
-    :param tune_checkpoint_dir: when using raytune, specify the checkpoint directory
-                                here
+    :param use_tune: set to True when using raytune 
+                     (then training stores checkpoints and reports correctly)
     :param sched_before_optim: If True, scheduler.step() gets called before the optimizer gets called
                                (needed for the warmup learning implementation)
     """
@@ -78,12 +78,12 @@ def train_model(model, optimizer, scheduler, train_loader,
         pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
                              pretrain_loader, valid_loader, pretrain_epochs,
                              use_amp=use_amp, writer=pre_writer,
-                             tune_checkpoint_dir=tune_checkpoint_dir,
+                             use_tune=use_tune,
                              sched_before_optim=sched_before_optim)
         print('training')
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
-                         use_amp=use_amp, writer=writer, tune_checkpoint_dir=tune_checkpoint_dir,
+                         use_amp=use_amp, writer=writer, use_tune=use_tune,
                          sched_before_optim=sched_before_optim)
 
     if mes_time:
@@ -129,7 +129,7 @@ def train_model(model, optimizer, scheduler, train_loader,
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
                          valid_loader, num_epochs, use_amp, writer,
-                         tune_checkpoint_dir, sched_before_optim):
+                         use_tune, sched_before_optim):
     """Train the model not measuring time"""
     keep_loss = valid_loader is not None
 
@@ -173,7 +173,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
                 writer.add_scalar('validation loss', v_loss)
                 writer.add_scalar('validation error', v_err)
 
-        if (tune_checkpoint_dir is not None) and ((epoch==num_epochs-1) or (epoch%5 == 0)):
+        if use_tune and ((epoch%3 == 0) or (epoch == num_epochs-1)):
             with tune.checkpoint_dir(epoch) as checkpoint_dir:
                 path = os.path.join(checkpoint_dir, "checkpoint")
                 torch.save((model.state_dict(), optimizer.state_dict()), path)
