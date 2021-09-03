@@ -16,7 +16,7 @@ class OurNet(nn.Module):
                  channel_fe=[3,4,4,8,8,16,16,16,32],
                  kernel_fe=[3,3,3,3,3,3,3,3],
                  channel_cp=[64, 32, 32, 32, 1], kernel_cp=[3,3,3,3],
-                 dropout_p=0.5):
+                 dropout_p=0.5, normalizing_factor=192.0):
         """
         :param channel_fe: The channel sizes of the feature extractor
         :param kernel_fe: The kernel sizes of the feature extractor
@@ -36,7 +36,7 @@ class OurNet(nn.Module):
         self.cost_processing = CostProcessing(channels=channel_cp,
                                               kernel_sizes=kernel_cp,
                                               dropout_p=dropout_p)
-        self.regressor = Regressor()
+        self.regressor = Regressor(normalizing_factor=normalizing_factor)
 
     def forward(self, left, right):
         left_feats = self.feature_extraction(left)

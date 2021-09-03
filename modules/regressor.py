@@ -15,8 +15,9 @@ class Regressor(nn.Module):
     Output is the disparity map of size (B, H, W)
     """
 
-    def __init__(self):
+    def __init__(self, normalizing_factor):
         super().__init__()
+        self.normalizing_factor = normalizing_factor
         self.weight_sum = nn.Conv2d(in_channels=192, out_channels=1, kernel_size=1, bias=False)
 
     def forward(self, x):
@@ -36,7 +37,6 @@ class Regressor(nn.Module):
         output = self.weight_sum(cost)
         
         # for output normalization:
-        output = output*192.0 
-        #output = output*90.0 - 4.0
+        output = output*self.normalizing_factor
         
         return torch.squeeze(output, dim=1)
