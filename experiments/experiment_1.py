@@ -23,14 +23,14 @@ kitti_train = KittiDataset('train')
 
 # the configuration for the hyperparameter search
 config = {
-        'lr': tune.loguniform(5e-8, 3e-3),
+        'lr': tune.loguniform(8e-8, 3e-3),
         'layers_feat': tune.choice([[3,16,16,16,16,16,16,16,32], [3,16,16,16,32,32,32,32],
                                    [3,32,32,32,32,32]]),
         'layers_cost': tune.choice([[64, 32, 32, 32, 1], [64, 32, 16, 16, 16, 16, 1], [64, 32, 32, 16, 16, 1]]),
         'batch_size': tune.quniform(4, 6, q=1.0),
         'optimizer': tune.choice(['adam', 'sgd']),
         'step_lr': tune.quniform(35, 90, q=1.0),
-        'num_warmup': tune.quniform(4, 10, q=1),
+        'num_warmup': tune.quniform(4, 8, q=1),
         'dropout_p': tune.uniform(0.01, 0.7),
         'normalizing_factor': tune.uniform(150.0, 500.0)
         }
@@ -68,7 +68,7 @@ def train(config, checkpoint_dir=None):
     
     # training
     training.train_model(model=model, optimizer=optimizer, scheduler=scheduler,
-            train_loader=kitti_loader, num_epochs=4, log_dir=None,
+            train_loader=kitti_loader, num_epochs=180, log_dir=None,
             valid_loader=kitti_val_loader, savefile=None,
             mes_time=False, use_amp=False, show_graph=False,
             use_tune=True, sched_before_optim=True)
@@ -87,7 +87,7 @@ result = result = tune.run(
         stop=trial_stop,
         resources_per_trial={'cpu':12, 'gpu':1},
         config=config,
-        num_samples=3,
+        num_samples=25,
         checkpoint_score_attr='min-err',
         )
 
