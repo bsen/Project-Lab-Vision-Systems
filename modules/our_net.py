@@ -16,7 +16,7 @@ class OurNet(nn.Module):
                  channel_fe=[3,4,4,8,8,16,16,16,32],
                  kernel_fe=[3,3,3,3,3,3,3,3],
                  channel_cp=[64, 32, 32, 32, 1], kernel_cp=[3,3,3,3],
-                 dropout_p=0.5, normalizing_factor=192.0):
+                 dropout_p=0.5):
         """
         :param channel_fe: The channel sizes of the feature extractor
         :param kernel_fe: The kernel sizes of the feature extractor

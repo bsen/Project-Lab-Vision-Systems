@@ -5,6 +5,8 @@ import sys
 sys.path.insert(0, '../')
 from my_utils import device
 
+from dataloader.KITTIloader import unnormalize
+
 
 class smoothL1:
     def __init__(self, beta):
@@ -22,6 +24,9 @@ def three_pixel_err(target, prediction):
     The parameters should be of size (B, H, W).
     Pixels where the target disparity is 0.0 are ignored.
     """
+    target = unnormalize(target)
+    prediction = unnormalize(prediction)
+    
     B, _, _ = target.shape
 
     t_minus_p = torch.abs(target - prediction)

@@ -1,4 +1,5 @@
 import torch
+import torchvision.transforms as T
 from PIL import Image
 import os.path
 from . import preprocess
@@ -9,6 +10,12 @@ from my_utils import device, base_path
 left_folder = 'datasets/kitti2015/training/image_2/'
 right_folder = 'datasets/kitti2015/training/image_3/'
 disp_folder = 'datasets/kitti2015/training/disp_occ_0/'
+
+disp_mean = 34.25092341204197
+disp_std = 17.543509696678083
+
+normalize = T.Normalize(mean=disp_mean, std=disp_std, inplace=True)
+unnormalize = T.Normalize(-disp_mean / disp_std, 1.0 / disp_std)
 
 class KittiDataset(torch.utils.data.Dataset):
     """A class loading the KITTI 2015 scene flow dataset.
@@ -73,7 +80,13 @@ class KittiDataset(torch.utils.data.Dataset):
         disp = Image.open(self.left_disparity[idx])
 
         left, right, disp = self.preprocess(left, right, disp)
-        return left, right, disp/256.0
+        disp = disp/256.0
+        
+        # standardization:
+        mean = 34.25092341204197
+        std = 17.543509696678083
+        disp = normalize(disp)
+        return left, right, disp
 
     def __len__(self):
         return self.length
