@@ -36,7 +36,7 @@ class OurNet(nn.Module):
         self.cost_processing = CostProcessing(channels=channel_cp,
                                               kernel_sizes=kernel_cp,
                                               dropout_p=dropout_p)
-        self.regressor = Regressor(normalizing_factor=normalizing_factor)
+        self.regressor = Regressor(dropout_p=dropout_p)
 
     def forward(self, left, right):
         left_feats = self.feature_extraction(left)
