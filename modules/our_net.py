@@ -12,8 +12,7 @@ class OurNet(nn.Module):
 
     Output: disparity map of shape (B, H, W)"""
 
-    def __init__(self, use_resnet=False,
-                 fix_resnet=False,
+    def __init__(self,
                  channel_fe=[3,4,4,8,8,16,16,16,32],
                  channel_cp=[64, 32, 32, 32, 1],
                  dropout_p=0.5):
@@ -27,14 +26,15 @@ class OurNet(nn.Module):
         :param kernel_cp: The kernel sizes of the cost processing
         """
         super().__init__()
-        if use_resnet:
-            self.feature_extraction = ResnetFE(fix_resnet)
-        else:
-            self.feature_extraction = FeatureExtractor(channels=channel_fe,
-                                                       dropout_p=dropout_p)
+        self.feature_extraction = FeatureExtractor(channels=channel_fe,
+                                                   dropout_p=dropout_p)
         self.cost_processing = CostProcessing(channels=channel_cp,
                                               dropout_p=dropout_p)
         self.regressor = Regressor()
+        
+    def set_dropout(dropout_p):
+        self.feature_extraction.set_dropout(dropout_p)
+        self.cost_processing.set_dropout(dropout_p)
 
     def forward(self, left, right):
         left_feats = self.feature_extraction(left)
