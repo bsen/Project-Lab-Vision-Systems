@@ -1,6 +1,7 @@
 import torch
 import torchvision.transforms as T
 from PIL import Image
+import numpy as np
 import os.path
 from . import preprocess
 import sys
@@ -14,8 +15,13 @@ disp_folder = 'datasets/kitti2015/training/disp_occ_0/'
 disp_mean = 34.25092341204197
 disp_std = 17.543509696678083
 
-normalize = T.Normalize(mean=disp_mean, std=disp_std, inplace=True)
-unnormalize = T.Normalize(-disp_mean / disp_std, 1.0 / disp_std)
+# standardization
+def normalize(disp):
+    disp[disp==0.0] = np.nan
+    return (disp-disp_mean)/disp_std
+
+unnormalize = lambda disp: (disp*disp_std)+disp_mean
+
 
 class KittiDataset(torch.utils.data.Dataset):
     """A class loading the KITTI 2015 scene flow dataset.
@@ -83,8 +89,6 @@ class KittiDataset(torch.utils.data.Dataset):
         disp = disp/256.0
         
         # standardization:
-        mean = 34.25092341204197
-        std = 17.543509696678083
         disp = normalize(disp)
         return left, right, disp
 
