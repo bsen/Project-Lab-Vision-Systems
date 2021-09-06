@@ -18,7 +18,7 @@ class Regressor(nn.Module):
     Output is the disparity map of size (B, H, W)
     """
 
-    def __init__(self, dropout_p):
+    def __init__(self):
         super().__init__()
         self.weights = torch.arange(192).view(1, 192, 1, 1).to(device)
         

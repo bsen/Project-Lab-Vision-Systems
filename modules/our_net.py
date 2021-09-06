@@ -4,6 +4,7 @@ from .feature_extraction import FeatureExtractor
 from .regressor import Regressor
 from .resnet_extraction import ResnetFE
 
+
 class OurNet(nn.Module):
     """The complete net we use for predicting the disparity of a stereo input.
 
@@ -14,8 +15,7 @@ class OurNet(nn.Module):
     def __init__(self, use_resnet=False,
                  fix_resnet=False,
                  channel_fe=[3,4,4,8,8,16,16,16,32],
-                 kernel_fe=[3,3,3,3,3,3,3,3],
-                 channel_cp=[64, 32, 32, 32, 1], kernel_cp=[3,3,3,3],
+                 channel_cp=[64, 32, 32, 32, 1],
                  dropout_p=0.5):
         """
         :param channel_fe: The channel sizes of the feature extractor
@@ -31,12 +31,10 @@ class OurNet(nn.Module):
             self.feature_extraction = ResnetFE(fix_resnet)
         else:
             self.feature_extraction = FeatureExtractor(channels=channel_fe,
-                                                       kernel_sizes=kernel_fe, 
                                                        dropout_p=dropout_p)
         self.cost_processing = CostProcessing(channels=channel_cp,
-                                              kernel_sizes=kernel_cp,
                                               dropout_p=dropout_p)
-        self.regressor = Regressor(dropout_p=dropout_p)
+        self.regressor = Regressor()
 
     def forward(self, left, right):
         left_feats = self.feature_extraction(left)

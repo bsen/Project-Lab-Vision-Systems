@@ -1,10 +1,8 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import math
 
-
-def get_pad(x):
-    return x//2
 
 class FeatureExtractor(nn.Module):
     """
@@ -12,45 +10,46 @@ class FeatureExtractor(nn.Module):
     Gets as input one tensor of shape (B, 3, H, W) and outputs a tensor of
     shape (B, 32, H/4, W/4).
     """
-    def __init__(self, channels, kernel_sizes, dropout_p):
+    def __init__(self, channels, dropout_p):
         super().__init__()
-        assert len(channels)-1 == len(kernel_sizes)
-
-        self.channels = channels
-        self.first_cnn = nn.Sequential(
-                    nn.Conv2d(channels[0], channels[1], kernel_sizes[0],
-                                   padding=get_pad(kernel_sizes[0])),
-                    nn.BatchNorm2d(channels[1]),
-                    nn.AvgPool2d(2))
 
         self.cnn_blocks = nn.ModuleList()
-        for i in range(1, len(channels)-1):
+        self.identities = nn.ModuleList()
+        for i in range(len(channels)-1):
             if i == len(channels)//2:
                 stride=2
             else:
                 stride=1
-            next_block = nn.Sequential(nn.Conv2d(channels[i], channels[i+1],
-                                                 kernel_sizes[i],
-                                                 padding=get_pad(kernel_sizes[i]),
-                                                 stride=stride),
-                                       nn.BatchNorm2d(channels[i+1]),
-                                       nn.Dropout2d(p=dropout_p),
-                                       nn.ReLU(),
-                                       nn.Conv2d(channels[i+1], channels[i+1],
-                                                 kernel_sizes[i],
-                                                 padding=get_pad(kernel_sizes[i])),
-                                       nn.BatchNorm2d(channels[i+1]),
-                                       nn.Dropout2d(p=dropout_p), 
-                                      )
-            self.cnn_blocks.append(next_block)
+                
+            next_block = [nn.Conv2d(channels[i], channels[i+1],
+                                     kernel_size=3,
+                                     padding=1,
+                                     stride=stride, bias=False),
+                           nn.BatchNorm2d(channels[i+1]),
+                           nn.Dropout2d(p=dropout_p),
+                           nn.ReLU(),
+                           nn.Conv2d(channels[i+1], channels[i+1], 
+                                     kernel_size=3,
+                                     padding=1, bias=False),
+                           nn.BatchNorm2d(channels[i+1]),
+                           nn.Dropout2d(p=dropout_p)]
+            
+            if i == 0:
+                next_block.append(nn.AvgPool2d(2))
+                next_identity = nn.Conv2d(channels[i], channels[i+1], kernel_size=1, 
+                                          stride=2, bias=False)
+            else:
+                if stride != 1 or channels[i] != channels[i+1]:
+                    # 1x1 convolution
+                    next_identity = nn.Conv2d(channels[i], channels[i+1], kernel_size=1, 
+                                              stride=stride, bias=False)
+                else:
+                    next_identity = nn.Identity()
+            self.cnn_blocks.append(nn.Sequential(*next_block))
+            self.identities.append(next_identity)
 
     def forward(self, x):
-        output = self.first_cnn(x)
+        for block, identity in zip(self.cnn_blocks, self.identities):
+            x = F.relu(block(x) + identity(x))
 
-        for i, block in enumerate(self.cnn_blocks, start=1):
-            if (self.channels[i] == self.channels[i+1]) and (block[0].stride == (1,1)):
-                output = nn.functional.relu(block(output)+output)
-            else:
-                output = nn.functional.relu(block(output))
-
-        return output
+        return x
