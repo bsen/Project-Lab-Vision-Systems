@@ -2,7 +2,7 @@ import torch.nn as nn
 from .cost_processing import CostProcessing
 from .feature_extraction import FeatureExtractor
 from .regressor import Regressor
-from .resnet_regression import ResnetRegressor
+from .resnet_extraction import ResnetFE
 
 class OurNet(nn.Module):
     """The complete net we use for predicting the disparity of a stereo input.
@@ -28,7 +28,7 @@ class OurNet(nn.Module):
         """
         super().__init__()
         if use_resnet:
-            self.feature_extraction = ResnetRegressor(fix_resnet)
+            self.feature_extraction = ResnetFE(fix_resnet)
         else:
             self.feature_extraction = FeatureExtractor(channels=channel_fe,
                                                        kernel_sizes=kernel_fe, 

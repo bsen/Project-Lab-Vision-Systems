@@ -12,16 +12,6 @@ left_folder = 'datasets/kitti2015/training/image_2/'
 right_folder = 'datasets/kitti2015/training/image_3/'
 disp_folder = 'datasets/kitti2015/training/disp_occ_0/'
 
-disp_mean = 34.25092341204197
-disp_std = 17.543509696678083
-
-# standardization
-def normalize(disp):
-    disp[disp==0.0] = np.nan
-    return (disp-disp_mean)/disp_std
-
-unnormalize = lambda disp: (disp*disp_std)+disp_mean
-
 
 class KittiDataset(torch.utils.data.Dataset):
     """A class loading the KITTI 2015 scene flow dataset.
@@ -88,8 +78,6 @@ class KittiDataset(torch.utils.data.Dataset):
         left, right, disp = self.preprocess(left, right, disp)
         disp = disp/256.0
         
-        # standardization:
-        disp = normalize(disp)
         return left, right, disp
 
     def __len__(self):

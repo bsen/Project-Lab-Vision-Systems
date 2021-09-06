@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import sys
+sys.path.insert(0, '../')
+from my_utils import device
 
 
 class Regressor(nn.Module):
@@ -17,20 +20,7 @@ class Regressor(nn.Module):
 
     def __init__(self, dropout_p):
         super().__init__()
-        
-        self.upsample = nn.Sequential(
-                            nn.ConvTranspose2d(48, 96, 3, stride=2, padding=1, output_padding=1),
-                            nn.BatchNorm2d(96),
-                            nn.Dropout(dropout_p),
-                            nn.ReLU(),
-                            nn.Conv2d(96, 96, 3, padding=1),
-                            nn.BatchNorm2d(96),
-                            nn.Dropout(dropout_p),
-                            nn.ReLU(),
-                            nn.ConvTranspose2d(96, 192, 3, stride=2, padding=1, output_padding=1)
-        )
-        self.weight_sum = nn.Conv2d(in_channels=192, out_channels=1, kernel_size=1, bias=False)
-        
+        self.weights = torch.arange(192).view(1, 192, 1, 1).to(device)
         
         
     def forward(self, x):
@@ -40,16 +30,13 @@ class Regressor(nn.Module):
         W = W4*4
 
         # upsample
-        #cost = F.interpolate(x, size=[Disp, H, W], mode='trilinear')
-        #cost = torch.squeeze(cost, dim=1)
-        cost = torch.squeeze(x, dim=1)
-        cost = self.upsample(cost)
-        
+        cost = F.interpolate(x, size=[Disp, H, W], mode='trilinear')
+        cost = torch.squeeze(cost, dim=1)
 
         # channelwise softmax
         cost = F.softmax(cost, dim=1)
 
         # weight & sum
-        output = self.weight_sum(cost)
+        output = torch.sum(cost * self.weights, dim=1, keepdim=False)
         
-        return torch.squeeze(output, dim=1)
+        return output

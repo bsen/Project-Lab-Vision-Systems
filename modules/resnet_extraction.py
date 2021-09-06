@@ -7,7 +7,7 @@ import torchvision.models as models
 def get_pad(x):
     return x//2
 
-class ResnetRegressor(nn.Module):
+class ResnetFE(nn.Module):
     """
     A siamese feature extractor which uses part of pretrained resnet18 as a fixed feature extractor.
     Gets as input one tensor of shape (B, 3, H, W) and outputs a tensor of

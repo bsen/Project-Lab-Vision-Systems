@@ -5,15 +5,13 @@ import sys
 sys.path.insert(0, '../')
 from my_utils import device
 
-from dataloader.KITTIloader import unnormalize
-
 
 class smoothL1:
     def __init__(self, beta):
         self.nnSmoothL1 = nn.SmoothL1Loss(beta=beta)
 
     def __call__(self, target, prediction):
-        mask = torch.logical_not(target.isnan())
+        mask = (target != 0.0)
         mask.detach_()
         return self.nnSmoothL1(prediction[mask], target[mask])
 
@@ -26,10 +24,10 @@ def three_pixel_err(target, prediction):
     Pixels where the target disparity is 0.0 are ignored.
     """
     
-    mask = torch.logical_not(target.isnan())
+    mask = torch.logical_and((target != 0.0), (target<=192.0))
     
-    target = unnormalize(target)[mask]
-    prediction = unnormalize(prediction)[mask]
+    target = target[mask]
+    prediction = prediction[mask]
     
     t_minus_p = torch.abs(target - prediction)
     lower_3 = (t_minus_p < 3)

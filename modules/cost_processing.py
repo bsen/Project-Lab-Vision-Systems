@@ -13,7 +13,7 @@ class CostProcessing(nn.Module):
     Gets two tensors of shape (B, 32, H/4, W/4) as input and outputs
     a tensor of shape (B, 1, Disp/4, H/4, W/4).
     Here, Disp = 192"""
-    def __init__(self, channels=[64, 32, 32, 32, 32, 32, 32, 1], kernel_sizes=[64, 32, 32, 32, 32, 32, 32, 1], dropout_p=0.5):
+    def __init__(self, channels, kernel_sizes, dropout_p):
         super().__init__()
         assert len(channels)-1 == len(kernel_sizes)
         self.channels = channels
@@ -42,7 +42,7 @@ class CostProcessing(nn.Module):
         """
         B, C, H4, W4 = left.shape
         # calculate the cost volume
-        cost = torch.zeros(B, C*2, 192//4, H4, W4).to(device)
+        cost = torch.Tensor(B, C*2, 192//4, H4, W4).to(device)
         for i in range(192//4):
             if (i==0):
                 cost[:, :C, i, :, :] = left

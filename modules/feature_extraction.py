@@ -12,8 +12,7 @@ class FeatureExtractor(nn.Module):
     Gets as input one tensor of shape (B, 3, H, W) and outputs a tensor of
     shape (B, 32, H/4, W/4).
     """
-    def __init__(self, channels=[3,4,4,8,8,8,16,16,32],
-                 kernel_sizes=[3,3,3,3,3,3,3,3], dropout_p=0.5):
+    def __init__(self, channels, kernel_sizes, dropout_p):
         super().__init__()
         assert len(channels)-1 == len(kernel_sizes)
 
