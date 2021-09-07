@@ -27,15 +27,17 @@ class Transformation():
 
     global imagenet_stats
 
-    def __init__ (self, augment=True, center_crop=False):
-        assert not (augment and center_crop) # augment and center_crop can
-                                             # not be used together
-
-        self.augment = augment
+    def __init__ (self, rand_crop=True, col_jitter_flip=False, center_crop=False):
+        assert not (rand_crop and center_crop) # random and center_crop can
+                                               # not be used together
+            
+        self.rand_crop = rand_crop
+        self.col_jitter_flip = col_jitter_flip
         self.center_crop = center_crop
-        if augment:
+        if rand_crop:
             self.random_crop = RandomCrop(256, 512)
-            self.aug_transform = ColorJitter(0.2, 0.2, 0.2, 0.05)
+        if col_jitter_flip:
+            self.color_jitter = ColorJitter(0.2, 0.2, 0.2, 0.05)
 
         if center_crop:
             self.normalize = transforms.Normalize(**imagenet_stats)
@@ -50,9 +52,10 @@ class Transformation():
 
         if not self.center_crop:
             disp = torch.squeeze(to_tensor(disp))
-        if self.augment:
+        if self.rand_crop:
             left, right, disp = self.random_crop(left, right, disp)
-            left, right = self.aug_transform(left, right)
+        if self.col_jitter_flip:
+            left, right = self.color_jitter(left, right)
             left, right, disp = random_flip(left, right, disp)
 
         return self.normalize(left), self.normalize(right), torch.squeeze(disp)

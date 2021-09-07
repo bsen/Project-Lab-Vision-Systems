@@ -49,9 +49,9 @@ class myImageFolder(data.Dataset):
         self.dploader = dploader
         self.training = training
         if training:
-            self.preprocess = preprocess.Transformation(augment=True, center_crop=False)
+            self.preprocess = preprocess.Transformation(rand_crop=True, col_jitter_flip=False, center_crop=False)
         else:
-            self.preprocess = preprocess.Transformation(augment=False, center_crop=False)
+            self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter_flip=False, center_crop=True)
 
     def __getitem__(self, index):
 
@@ -60,17 +60,9 @@ class myImageFolder(data.Dataset):
 
         left_img = self.loader(left)
         right_img = self.loader(right)
-        if self.disp_R is not None and rand.randint(2)==0:
-            # with a probability of 0.5, we flip and swap the images and
-            # use the flipped right disparity
-            left_img, right_img = right_img.transpose(Image.FLIP_LEFT_RIGHT), left_img.transpose(Image.FLIP_LEFT_RIGHT)
-
-            disp_L= self.disp_R[index]
-            dataL, scaleL = self.dploader(disp_L)
-            dataL = np.fliplr(dataL)
-        else:
-            disp_L= self.disp_L[index]
-            dataL, scaleL = self.dploader(disp_L)
+        
+        disp_L= self.disp_L[index]
+        dataL, scaleL = self.dploader(disp_L)
 
         dataL = np.ascontiguousarray(dataL, dtype=np.float32)
 
