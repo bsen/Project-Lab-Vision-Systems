@@ -19,9 +19,8 @@ f_smoothL1 = smoothL1(1.0)
 def train_model(model, optimizer, scheduler, train_loader,
                 num_epochs, log_dir,
                 valid_loader=None, savefile=None, mes_time=False,
-                pretrain_optimizer=None, pretrain_scheduler=None,
-                pretrain_loader=None, pretrain_epochs=None, use_amp=True,
-                show_graph=False, use_tune=False, sched_before_optim=False):
+                use_amp=True, show_graph=False, use_tune=False, 
+                warmup_lr=False, sched_iters=None):
     """
     Training a model for a given number of epochs.
 
@@ -33,32 +32,37 @@ def train_model(model, optimizer, scheduler, train_loader,
                          If this is None, also no other losses get stored.
     :param num_epochs: The number of epochs we train for
     :param log_dir: The directory, tensorboard should log to
-                    (in the folders runs/log_dir/train/ and runs/log_dir/pretrain/ )
+                    (in the folders runs/log_dir/)
                     If set to None, tensorboard will not log
-    :param savefile: If given, the model, training loss, validation loss,
-                     the loss in the different iterations and the measured
-                     time get stored in the file savefile.
+    :param savefile: If given, the model, training loss, validation loss and
+                     the losses in the different iterations
+                     get stored in the file savefile.
     :param mes_time: If True, the time how long the training procedure takes gets
-                     measured and returned (this measures only a rough approximation)
-    :param pretrain_optimizer: The optimizer used for pretraining (optional)
-    :param pretrain_scheduler: The scheduler used for pretraining (optional)
-    :param pretrain_loader: The DataLoader for the pretrain dataset (optional)
-    :param pretrain_epochs: The number of epochs for pretraining (optional)
+                     measured and printed to stdout
+                     (this measures only a rough approximation)
     :param use_amp: Determines whether or not to use automatic mixed precision
                     for training the network (as explained here:
-                    https://pytorch.org/docs/stable/notes/amp_examples.html)
-    :param show_graph: whether or not to show the network graph in tensorboard
-    :param use_tune: set to True when using raytune 
+                    https://pytorch.org/docs/stable/amp.html)
+    :param use_tune: set to True when this function is called by raytune for hyperparameter optimization 
                      (then training stores checkpoints and reports correctly)
-    :param sched_before_optim: If True, scheduler.step() gets called before the optimizer gets called
-                               (needed for the warmup learning implementation)
+    :param warmup_lr: If True, scheduler.step() gets called before the optimizer gets called
+                      and some other things are done a bit differently
+                      (needed for the warmup learning implementation)
+    :param sched_iters: Determines after how many iterations the scheduler should be called
+                        in each epoch. 
+                        E.g. if sched_iters=4, scheduler.step() will be called
+                        in the first iteration, 4-th iteration, 8-th iteration, ... each epoch.
+                        If this is not set, the scheduler gets called once per epoch.
+                        Can only be used with warmup_lr.
+                        (This is needed for Scene Flow, since the epochs there contain many elements.)
     """
-
+    assert (sched_iters is None) or warmup_lr
+    assert (sched_iters is None) or (sched_iters < len(train_loader))
+    
     if log_dir is None:
         writer = None
     else:
-        writer = tb.SummaryWriter(os.path.join(base_path, 'runs/', log_dir, 'train/'))
-    pretrain = pretrain_loader is not None
+        writer = tb.SummaryWriter(os.path.join(base_path, 'runs/', log_dir))
 
     if show_graph:
         sample = next(iter(train_loader))
@@ -69,30 +73,16 @@ def train_model(model, optimizer, scheduler, train_loader,
     if mes_time:
         start = time.time()
 
-    if pretrain:
-        if log_dir is None:
-            pre_writer = None
-        else:
-            pre_writer = tb.SummaryWriter(os.path.join(base_path, 'runs/', log_dir, 'pretrain/'))
-        print('pretraining:')
-        pre_losses = _train_model_no_time(model, pretrain_optimizer, pretrain_scheduler,
-                             pretrain_loader, valid_loader, pretrain_epochs,
-                             use_amp=use_amp, writer=pre_writer,
-                             use_tune=use_tune,
-                             sched_before_optim=sched_before_optim)
-        print('training')
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
                          use_amp=use_amp, writer=writer, use_tune=use_tune,
-                         sched_before_optim=sched_before_optim)
+                         warmup_lr=warmup_lr, sched_iters=sched_iters)
 
     if mes_time:
         torch.cuda.synchronize()
         end = time.time()
         time_taken = end-start
         print(f'Time taken for training: {str(datetime.timedelta(seconds=time_taken))}')
-
-
 
     if savefile is not None:
         path = os.path.join(base_path, savefile)
@@ -103,34 +93,20 @@ def train_model(model, optimizer, scheduler, train_loader,
                 },
                 f=path)
         else:
-            if pretrain:
-                torch.save(
-                    {
-                        'model_state_dict': model.state_dict(),
-                        'pre_losses': pre_losses,
-                        'losses': losses
-                    },
-                    f=path)
-            else:
-                torch.save(
-                    {
-                        'model_state_dict': model.state_dict(),
-                        'losses': losses
-                    },
-                    f=path)
+            torch.save(
+                {
+                    'model_state_dict': model.state_dict(),
+                    'losses': losses
+                },
+                f=path)
 
-    if valid_loader is not None:
-        if pretrain:
-            return pre_losses, losses
-        else:
-            return losses
-    return time_taken
+    return losses
 
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
                          valid_loader, num_epochs, use_amp, writer,
-                         use_tune, sched_before_optim):
-    """Train the model not measuring time"""
+                         use_tune, warmup_lr, sched_iters):
+    """ Train the model not measuring time """
     keep_loss = valid_loader is not None
 
     scaler = amp.GradScaler(enabled=use_amp)
@@ -140,20 +116,24 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         loss_iters = []
         val_loss =  []
         val_err = []
+    
+    if warmup_lr:
+        optimizer.zero_grad()
+        optimizer.step()
+        
     print('Epoch:')
     for epoch in range(num_epochs):
         print(str(epoch), end=', ')
 
         # training epoch
         model.train()  # important for dropout and batch norms
-        if sched_before_optim:
-            scheduler.step()
+        
         loss_list = _train_epoch(
                 model=model, train_loader=train_loader, optimizer=optimizer,
-                keep_loss=keep_loss, scaler=scaler, use_amp=use_amp
+                scheduler=scheduler, warmup_lr=warmup_lr,
+                keep_loss=keep_loss, scaler=scaler, use_amp=use_amp,
+                sched_iters=sched_iters
             )
-        if not sched_before_optim:
-            scheduler.step()
         
         if keep_loss:
             mean_loss = np.mean(loss_list)
@@ -186,12 +166,21 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
     return None
 
 
-def _train_epoch(model, train_loader, optimizer, keep_loss, scaler, use_amp):
+def _train_epoch(model, train_loader, optimizer, scheduler, warmup_lr, keep_loss, scaler, use_amp, sched_iters):
     """ Training a model for one epoch """
     if keep_loss:
         loss_list = []
+    
+    if warmup_lr and (sched_iters is None):
+        scheduler.step()
 
-    for (left, right, true_disp) in train_loader:
+    for i,(left, right, true_disp) in enumerate(train_loader):
+        
+        if (sched_iters is not None) and i%sched_iters == 0:
+            scheduler.step()
+            if len(loss_list) >= sched_iters:
+                print('train loss:', np.mean(loss_list[-sched_iters:]))
+        
         left = left.to(device)
         right = right.to(device)
         true_disp = true_disp.to(device)
@@ -214,6 +203,8 @@ def _train_epoch(model, train_loader, optimizer, keep_loss, scaler, use_amp):
         # Update the scale
         scaler.update()
 
+    if (not warmup_lr) and (sched_iters is None):
+        scheduler.step()
 
     if keep_loss:
         return loss_list
