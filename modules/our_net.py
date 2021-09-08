@@ -32,7 +32,7 @@ class OurNet(nn.Module):
                                               dropout_p=dropout_p)
         self.regressor = Regressor()
         
-    def set_dropout(dropout_p):
+    def set_dropout(self, dropout_p):
         self.feature_extraction.set_dropout(dropout_p)
         self.cost_processing.set_dropout(dropout_p)
 

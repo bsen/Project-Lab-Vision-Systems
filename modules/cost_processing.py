@@ -40,7 +40,7 @@ class BasicBlock3d(nn.Module):
         
         return F.relu(identity + x)
     
-    def set_dropout(dropout_p):
+    def set_dropout(self, dropout_p):
         self.dropout_p = dropout_p
 
 
@@ -82,6 +82,6 @@ class CostProcessing(nn.Module):
         
         return cost
     
-    def set_dropout(dropout_p):
+    def set_dropout(self, dropout_p):
         for block in self.res_blocks:
             block.set_dropout(dropout_p)
