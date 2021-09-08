@@ -50,11 +50,11 @@ model = OurNet(channel_fe=channel_fe, channel_cp=channel_cp,
                dropout_p=0.2).to(device)
 
 # build the optimizers and schedulers
-optimizer = optim.Adam(model.parameters(), lr=3e-5)
+optimizer = optim.Adam(model.parameters(), lr=3e-4)
 
 scheduler = optim.lr_scheduler.StepLR(optimizer, 40)
-scheduler = torch_warmup_lr.WarmupLR(scheduler, init_lr=1e-12, 
-                                     num_warmup=6, 
+scheduler = torch_warmup_lr.WarmupLR(scheduler, init_lr=1e-13, 
+                                     num_warmup=3, 
                                      warmup_strategy='cos')
 
 # training

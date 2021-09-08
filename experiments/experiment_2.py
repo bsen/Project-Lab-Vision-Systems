@@ -4,6 +4,7 @@ import torch.optim as optim
 from ray import tune
 import torch_warmup_lr
 import os
+from collections import defaultdict, deque
 
 import sys
 sys.path.insert(0, './')
@@ -28,15 +29,15 @@ layers = {'cost_heavy': {'feat': [3,16,32,64,128,256,32], 'cost': [64, 32, 32, 3
 pretrained_path = {'cost_heavy': '/home/user/brank/project/Project-Lab-Vision-Systems/saved_models/cost_heavy.pt',
                    'feat_heavy': '/home/user/brank/project/Project-Lab-Vision-Systems/saved_models/feat_heavy.pt'}
 
+
 # the configuration for the hyperparameter search
 config = {
-        'lr': tune.loguniform(8e-8, 3e-3),
+        'lr': tune.loguniform(6e-6, 5e-3),
         'layers': tune.choice(['cost_heavy', 'feat_heavy']),
-        'optimizer': tune.choice(['adam', 'sgd']),
         'batch_size': tune.choice([4,5]),
         'step_lr': tune.quniform(35, 90, q=1.0),
         'num_warmup': tune.quniform(4, 8, q=1),
-        'dropout_p': tune.uniform(0.01, 0.7)
+        'dropout_p': tune.uniform(0.0, 0.4)
         }
 
 # the function which trains the model and reports checkpoints given
@@ -61,10 +62,7 @@ def train(config, checkpoint_dir=None):
     model.set_dropout(config['dropout_p'])
     
     # build the optimizer and scheduler
-    if config['optimizer'] == 'adam':
-        optimizer = optim.Adam(model.parameters(), lr=config['lr'])
-    elif config['optimizer'] == 'sgd':
-        optimizer = optim.SGD(model.parameters(), lr=config['lr'])
+    optimizer = optim.Adam(model.parameters(), lr=config['lr'])
     scheduler = optim.lr_scheduler.StepLR(optimizer, int(config['step_lr']))
     scheduler = torch_warmup_lr.WarmupLR(scheduler, init_lr=1e-13, 
                                          num_warmup=config['num_warmup'], 
@@ -85,10 +83,83 @@ def train(config, checkpoint_dir=None):
 
 
 # set custom random seed
-set_random_seed(21)
+set_random_seed(10)
+
+# build a custom stopper which early stops single trials
+
+class CustomStopper(tune.Stopper):
+    """
+    Some parts of the code of this class are copied from the TrialPlateauStopper
+    code from raytune.
+    """
+    
+    def __init__(self, std, grace_period, num_results):
+        self._std = std
+        self._grace_period = grace_period
+        self._num_results = num_results
+        
+        self._iter = defaultdict(lambda: 0)
+        self._trial_results = defaultdict(
+                    lambda: deque(maxlen=self._num_results))
+        self._errors = defaultdict(
+                    lambda: deque(maxlen=self._num_results))
+
+    def __call__(self, trial_id, result):
+        """
+        Gets as input the current trial and stops it when the function was called more
+        than grace_period amount of times for this trial_id and
+        one of the following criteria are met:
+        - the standard deviation on the last num_results is lower than std (for this trial_id)
+        - the function was called more than 14 times (we are in iteration >=40) and
+            the error is still higher than 0.5
+        - the function was called more than 20 times (we are in iteration >=58) and
+            the error is still higher than 0.2
+        - the function was called more than 33 times and the mean error of the
+            last num_results results is higher than
+            0.1
+        """
+        loss = result.get('loss')
+        err = result.get('err')
+        
+        self._trial_results[trial_id].append(loss)
+        self._errors.append(err)
+        self._iter[trial_id] += 1
+        
+        # If still in grace period, do not stop yet
+        if self._iter[trial_id] < self._grace_period:
+            return False
+
+        if (self._iter >= 14) and (err >= 0.5):
+            return True
+        
+        if (self._iter >= 20) and (err >= 0.2):
+            return True
+        
+        try:
+            if (self._iter >= 33) and (np.mean(self._errors[trial_id]) >= 0.1):
+                return True
+        except Exception:
+            pass
+        
+        # If not enough results yet, do not stop yet
+        if len(self._trial_results[trial_id]) < self._num_results:
+            return False
+        
+        # Calculate stdev of last `num_results` results
+        try:
+            current_std = np.std(self._trial_results[trial_id])
+        except Exception:
+            current_std = float("inf")
+
+        # If stdev is lower than threshold, stop early.
+        return current_std < self._std
+
+
+    def stop_all(self):
+        return False
 
 # use early stopping
-trial_stop = tune.stopper.TrialPlateauStopper(metric='loss', std=0.005, num_results=4, grace_period=6)
+trial_stop = CustomStopper(std=0.015, grace_period=4, num_results=4)
 
 # do hyperparameter search
 result = result = tune.run(
@@ -99,6 +170,7 @@ result = result = tune.run(
         config=config,
         num_samples=25,
         checkpoint_score_attr='min-err',
+        resume=True
         )
 
 # output best trial
