@@ -49,9 +49,9 @@ class myImageFolder(data.Dataset):
         self.dploader = dploader
         self.training = training
         if training:
-            self.preprocess = preprocess.Transformation(rand_crop=True, col_jitter_flip=False, center_crop=False)
+            self.preprocess = preprocess.Transformation(rand_crop=True, col_jitter=False, center_crop=False)
         else:
-            self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter_flip=False, center_crop=True)
+            self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter=False, center_crop=True)
 
     def __getitem__(self, index):
 

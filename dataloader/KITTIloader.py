@@ -27,7 +27,7 @@ class KittiDataset(torch.utils.data.Dataset):
 
         if set_type == "test":
             img_indices = list(range(150, 200))
-            self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter_flip=False,
+            self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter=False,
                                                         center_crop=True)
         else:
             # a random permutation of range(150) to split the data randomly into
@@ -50,11 +50,11 @@ class KittiDataset(torch.utils.data.Dataset):
                                 42, 126, 35, 103, 88, 64, 41, 70, 34, 45]
             if set_type == 'train':
                 img_indices = possible_indices[:125]
-                self.preprocess = preprocess.Transformation(rand_crop=True, col_jitter_flip=True,
+                self.preprocess = preprocess.Transformation(rand_crop=True, col_jitter=True,
                                                             center_crop=False)
             if set_type == 'val':
                 img_indices = possible_indices[125:]
-                self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter_flip=False,
+                self.preprocess = preprocess.Transformation(rand_crop=False, col_jitter=False,
                                                             center_crop=True)
 
         self.length = len(img_indices)
