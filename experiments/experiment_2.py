@@ -16,7 +16,6 @@ from dataloader import SceneFlowLoader as DA
 from dataloader import listflowfile as lt
 from modules.our_net import OurNet
 
-set_random_seed(42)
 
 # datasets for training and validation
 kitti_val = KittiDataset('val')
@@ -86,7 +85,7 @@ def train(config, checkpoint_dir=None):
     training.train_model(model=model, optimizer=optimizer, scheduler=scheduler,
             train_loader=kitti_loader, num_epochs=180, log_dir=None,
             valid_loader=kitti_val_loader, savefile=None,
-            mes_time=False, use_amp=False, show_graph=False,
+            mes_time=False, use_amp=True, show_graph=False,
             use_tune=True, warmup_lr=True)
 
 # build a custom stopper which early stops single trials
@@ -114,11 +113,12 @@ class CustomStopper(tune.Stopper):
         than grace_period amount of times for this trial_id and
         one of the following criteria are met:
         - the standard deviation on the last num_results is lower than std (for this trial_id)
-        - the function was called more than 14 times (we are in iteration >=40) and
+        - the function was called more than 14 times (the number of epochs is >= 40) and
             the error is still higher than 0.5
-        - the function was called more than 20 times (we are in iteration >=58) and
+        - the function was called more than 20 times (the number of epochs is >= 58) and
             the error is still higher than 0.2
-        - the function was called more than 33 times and the mean error of the
+        - the function was called more than 33 times (the number of epochs is >= 96) 
+            and the mean error of the
             last num_results results is higher than
             0.1
         """
@@ -174,7 +174,7 @@ result = result = tune.run(
         config=config,
         num_samples=25,
         checkpoint_score_attr='min-err',
-        resume=False
+        resume='ERRORED_ONLY'
         )
 
 # output best trial

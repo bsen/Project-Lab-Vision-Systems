@@ -156,8 +156,8 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         if use_tune and ((epoch%3 == 0) or (epoch == num_epochs-1)):
             with tune.checkpoint_dir(epoch) as checkpoint_dir:
                 path = os.path.join(checkpoint_dir, "checkpoint")
-                torch.save((model.state_dict(), optimizer.state_dict()), path)
-            tune.report(loss=v_loss, err=v_err)
+                torch.save((model.state_dict(), optimizer.state_dict(), scheduler.state_dict()), path)
+            tune.report(loss=v_loss, err=v_err, loss_train=mean_loss)
 
     print("\nTraining completed")
 
