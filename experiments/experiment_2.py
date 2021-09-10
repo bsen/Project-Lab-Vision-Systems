@@ -16,6 +16,8 @@ from dataloader import SceneFlowLoader as DA
 from dataloader import listflowfile as lt
 from modules.our_net import OurNet
 
+set_random_seed(42)
+
 # datasets for training and validation
 kitti_val = KittiDataset('val')
 kitti_val_loader = torch.utils.data.DataLoader(dataset=kitti_val, batch_size=1,
@@ -69,8 +71,14 @@ def train(config, checkpoint_dir=None):
                                          warmup_strategy='cos')
 
     if checkpoint_dir:
-        model_state, optimizer_state = torch.load(
+        states = torch.load(
             os.path.join(checkpoint_dir, "checkpoint"))
+        if len(states) == 3:
+            model_state, optimizer_state, scheduler_state = states
+            scheduler_state.load_state_dict(scheduler_state)
+        elif len(states) == 2:
+            model_state, optimizer_state = states
+            
         model.load_state_dict(model_state)
         optimizer.load_state_dict(optimizer_state)
     
@@ -80,10 +88,6 @@ def train(config, checkpoint_dir=None):
             valid_loader=kitti_val_loader, savefile=None,
             mes_time=False, use_amp=False, show_graph=False,
             use_tune=True, warmup_lr=True)
-
-
-# set custom random seed
-set_random_seed(10)
 
 # build a custom stopper which early stops single trials
 
@@ -122,21 +126,21 @@ class CustomStopper(tune.Stopper):
         err = result.get('err')
         
         self._trial_results[trial_id].append(loss)
-        self._errors.append(err)
+        self._errors[trial_id].append(err)
         self._iter[trial_id] += 1
         
         # If still in grace period, do not stop yet
         if self._iter[trial_id] < self._grace_period:
             return False
 
-        if (self._iter >= 14) and (err >= 0.5):
+        if (self._iter[trial_id] >= 14) and (err >= 0.5):
             return True
         
-        if (self._iter >= 20) and (err >= 0.2):
+        if (self._iter[trial_id] >= 20) and (err >= 0.2):
             return True
         
         try:
-            if (self._iter >= 33) and (np.mean(self._errors[trial_id]) >= 0.1):
+            if (self._iter[trial_id] >= 33) and (np.mean(self._errors[trial_id]) >= 0.1):
                 return True
         except Exception:
             pass
@@ -170,7 +174,7 @@ result = result = tune.run(
         config=config,
         num_samples=25,
         checkpoint_score_attr='min-err',
-        resume=True
+        resume=False
         )
 
 # output best trial
