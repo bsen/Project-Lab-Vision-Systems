@@ -18,8 +18,10 @@ f_smoothL1 = smoothL1(1.0)
 
 def train_model(model, optimizer, scheduler, train_loader,
                 num_epochs, log_dir,
+                init_epoch=0,
                 valid_loader=None, savefile=None, mes_time=False,
                 use_amp=True, show_graph=False, use_tune=False, 
+                tune_interval=3,
                 warmup_lr=False, sched_iters=None):
     """
     Training a model for a given number of epochs.
@@ -34,6 +36,8 @@ def train_model(model, optimizer, scheduler, train_loader,
     :param log_dir: The directory, tensorboard should log to
                     (in the folders runs/log_dir/)
                     If set to None, tensorboard will not log
+    :param init_epoch: The number of epochs this model was already trained 
+                       (important when we load a raytune checkpoint and want to train it)
     :param savefile: If given, the model, training loss, validation loss and
                      the losses in the different iterations
                      get stored in the file savefile.
@@ -45,9 +49,11 @@ def train_model(model, optimizer, scheduler, train_loader,
                     https://pytorch.org/docs/stable/amp.html)
     :param use_tune: set to True when this function is called by raytune for hyperparameter optimization 
                      (then training stores checkpoints and reports correctly)
+    :param tune_interval: if use_tune is True, raytune stores the configuration and reports every
+                          tune_interval-th epoch.
     :param warmup_lr: If True, scheduler.step() gets called before the optimizer gets called
                       and some other things are done a bit differently
-                      (needed for the warmup learning implementation)
+                      (needed for the warmup learning implementation by Le)
     :param sched_iters: Determines after how many iterations the scheduler should be called
                         in each epoch. 
                         E.g. if sched_iters=4, scheduler.step() will be called
@@ -75,7 +81,9 @@ def train_model(model, optimizer, scheduler, train_loader,
 
     losses = _train_model_no_time(model, optimizer, scheduler,
                          train_loader, valid_loader, num_epochs,
+                         init_epoch=init_epoch,
                          use_amp=use_amp, writer=writer, use_tune=use_tune,
+                         tune_interval=tune_interval,
                          warmup_lr=warmup_lr, sched_iters=sched_iters)
 
     if mes_time:
@@ -104,8 +112,8 @@ def train_model(model, optimizer, scheduler, train_loader,
 
 
 def _train_model_no_time(model, optimizer, scheduler, train_loader,
-                         valid_loader, num_epochs, use_amp, writer,
-                         use_tune, warmup_lr, sched_iters):
+                         valid_loader, num_epochs, init_epoch, use_amp, writer,
+                         use_tune, tune_interval, warmup_lr, sched_iters):
     """ Train the model not measuring time """
     keep_loss = valid_loader is not None
 
@@ -122,7 +130,7 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
         optimizer.step()
         
     print('Epoch:')
-    for epoch in range(num_epochs):
+    for epoch in range(init_epoch, num_epochs):
         print(str(epoch), end=', ')
 
         # training epoch
@@ -153,11 +161,11 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
                 writer.add_scalar('validation loss', v_loss)
                 writer.add_scalar('validation error', v_err)
 
-        if use_tune and ((epoch%3 == 0) or (epoch == num_epochs-1)):
+        if use_tune and ((epoch%tune_interval == 0) or (epoch == num_epochs-1)):
             with tune.checkpoint_dir(epoch) as checkpoint_dir:
                 path = os.path.join(checkpoint_dir, "checkpoint")
-                torch.save((model.state_dict(), optimizer.state_dict(), scheduler.state_dict()), path)
-            tune.report(loss=v_loss, err=v_err, loss_train=mean_loss)
+                torch.save((model.state_dict(), optimizer.state_dict(), scheduler.state_dict(), epoch), path)
+            tune.report(loss=v_loss, err=v_err, loss_train=mean_loss, epoch=epoch)
 
     print("\nTraining completed")
 
