@@ -1,5 +1,6 @@
 import torch
 from ray import tune
+from ray.tune.schedulers import PopulationBasedTraining
 import torch.optim as optim
 
 import sys
@@ -26,7 +27,8 @@ kitti_loader = torch.utils.data.DataLoader(dataset=kitti_train,
                                            shuffle=True)
 
 # the layers we use
-layers = {'feat': [3,32,64,64,128,128,256,256,32], 'cost': [64,32,32,32,32,1]}
+#layers = {'feat': [3,32,64,64,128,128,256,256,32], 'cost': [64,32,32,32,32,1]}
+layers = {'feat': [3,4,32], 'cost': [64,4,1]}
 
 
 # the function which trains the model and reports checkpoints given
@@ -42,7 +44,6 @@ def train(config, checkpoint_dir=None):
     # load the pretrained model
     pre_checkpoint = torch.load(pretrained_path)
     model.load_state_dict(pre_checkpoint['model_state_dict'])
-    model.set_dropout(config['dropout_p'])
     
     # build the optimizer
     optimizer = optim.Adam(model.parameters(), lr=config['lr'])
@@ -61,14 +62,16 @@ def train(config, checkpoint_dir=None):
         # load the learning rate from the config
         for param_group in optimizer.param_groups:
             param_group["lr"] = config["lr"]
-
+            
+    model.set_dropout(config['dropout_p'])
     
     # training
     training.train_model(model=model, optimizer=optimizer, scheduler=scheduler,
-            train_loader=kitti_loader, init_epoch=epoch, num_epochs=200, log_dir=None,
-            valid_loader=kitti_val_loader, savefile=None,
-            mes_time=False, use_amp=True, show_graph=False,
-            use_tune=True, tune_interval=5, warmup_lr=False)
+            train_loader=kitti_loader, init_epoch=epoch, num_epochs=41,  #241, 
+                         log_dir=None,
+                         valid_loader=kitti_val_loader, savefile=None,
+                         mes_time=False, use_amp=True, show_graph=False,
+                         use_tune=True, tune_interval=5, warmup_lr=False)
 
 # the space where initial samples are drawn from
 config = {
@@ -76,25 +79,32 @@ config = {
         'dropout_p': tune.uniform(0.0, 0.5)
         }
 
-
+# the Population based training scheduler, defines how 
+# and when to pertube. (details on 
+# https://docs.ray.io/en/latest/tune/api_docs/schedulers.html#population-based-training-tune-schedulers-populationbasedtraining )
 scheduler = PopulationBasedTraining(
         time_attr="epoch",
-        metric='err',
-        mode='min',
         perturbation_interval=20,
         hyperparam_mutations={
             'lr': tune.loguniform(7e-7, 1e-1),
-            'dropout_p': tune.uniform(0.0, 0.5)
+            'dropout_p': tune.uniform(0.0, 0.6)
         })
 
+# run the experiment
 analysis = tune.run(
         train,
         name="experiment_4",
         scheduler=scheduler,
         metric="err",
         mode="min",
-        stop=stopper,
         checkpoint_score_attr="min-err",
         keep_checkpoints_num=20,
         num_samples=10,
         config=config)
+
+
+# output best trial
+best_trial = result.get_best_trial('err', 'min', 'all')
+print(f'Best trial config: {best_trial.config}')
+print(f'Best trial final validation loss: {best_trial.last_result["loss"]}')
+print(f'Best trial final validation error: {best_trial.last_result["err"]}')
