@@ -108,9 +108,9 @@ class CustomStopper(tune.Stopper):
         than grace_period amount of times for this trial_id and
         one of the following criteria are met:
         - the standard deviation on the last num_results is lower than std (for this trial_id)
-        - the function was called more than 14 times (we are in iteration >=40) and
+        - the function was called more than 14 times (we are in epoch >=40) and
             the error is still higher than 0.2
-        - the function was called more than 20 times (we are in iteration >=58) and
+        - the function was called more than 20 times (we are in epoch >=58) and
             the error is still higher than 0.1
         - the function was called more than 33 times and the mean error of the
             last num_results results is higher than
@@ -171,7 +171,7 @@ trial_stop = CustomStopper(std=0.015, grace_period=4, num_results=4)
 
 
 # do hyperparameter search
-result = result = tune.run(
+result = tune.run(
         train,
         name='experiment_3',
         stop=trial_stop,
