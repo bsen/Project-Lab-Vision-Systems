@@ -174,7 +174,7 @@ result = result = tune.run(
         config=config,
         num_samples=25,
         checkpoint_score_attr='min-err',
-        resume='ERRORED_ONLY'
+        resume=True
         )
 
 # output best trial
