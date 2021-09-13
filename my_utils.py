@@ -34,14 +34,32 @@ def count_model_params(model):
     return num_params
 
 
-def load_tune_checkpoint(model, checkpoint, optimizer=None):
-    # somehow there is a bug because getattr in the WarmupLR sometimes goes in a infinite loop.
+def load_tune_checkpoint(model, checkpoint, optimizer=None, scheduler=None):
+    states = get_tune_checkpoint(checkpoint)
+    if len(states)==2:
+        state_model, state_optimizer = states
+    elif len(states) == 3:
+        state_model, state_optimizer, state_scheduler = states
+    elif len(states) == 4:
+        state_model, state_optimizer, state_scheduler, _ = states
+    else:
+        raise Exception()
+            
+    model.load_state_dict(state_model)
+    
+    if optimizer is not None:
+        optimizer.load_state_dict(state_optimizer)
+    
+    if scheduler is not None:
+        scheduler.load_state_dict(state_scheduler)
+        
+        
+def get_tune_checkpoint(checkpoint):
+    # somehow there is a bug because getattr in the WarmupLR goes in a infinite loop
+    # when loading a stored state_dict.
     # (The WarmupLR module is not written by myself.)
-    # This was not an issue before but here it is.
-    # Because I don't need the scheduler in this notebook, I just set it to a new method
-    # and by that the we don't get a "Maximum recursion depth exceeded" error.
-
-    # So if one wants to load a model from a checkpoint created by tune, please use this workaround
+    
+    # So if you want to load a model from a checkpoint created by tune, please use this workaround
     def new_getattr(self, name):
         if name == '_scheduler':
             self._scheduler = None
@@ -51,10 +69,8 @@ def load_tune_checkpoint(model, checkpoint, optimizer=None):
     old_getattr = torch_warmup_lr.WarmupLR.__getattr__
     torch_warmup_lr.WarmupLR.__getattr__ = new_getattr
     
-    state_model, state_optimizer, state_scheduler = torch.load(checkpoint, device)
-    model.load_state_dict(state_model)
+    states = torch.load(checkpoint, device)
     
     torch_warmup_lr.WarmupLR.__getattr__ = old_getattr
-    
-    if optimizer is not None:
-        optimizer.load_state_dict(state_optimizer)
+
+    return states
