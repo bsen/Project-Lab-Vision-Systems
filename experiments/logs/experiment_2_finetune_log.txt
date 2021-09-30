@@ -1,0 +1,2963 @@
+== Status ==
+Memory usage on this node: 16.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 0/40 CPUs, 0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 PENDING)
++-------------------+----------+-------+
+| Trial name        | status   | loc   |
+|-------------------+----------+-------|
+| train_3c540_00000 | PENDING  |       |
++-------------------+----------+-------+
+
+
+[2m[36m(pid=35579)[0m Epoch:
+[2m[36m(pid=35579)[0m 0, 
+[2m[36m(pid=35579)[0m  train loss: 0.7663748466968536
+[2m[36m(pid=35579)[0m  eval loss: 0.7098496782779694, eval err: 0.04720149755477905
+Result for train_3c540_00000:
+  date: 2021-09-13_11-32-44
+  done: false
+  epoch: 0
+  err: 0.04720149755477905
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 1
+  loss: 0.7098496782779694
+  loss_train: 0.7663748466968536
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 133.08008480072021
+  time_this_iter_s: 133.08008480072021
+  time_total_s: 133.08008480072021
+  timestamp: 1631525564
+  timesteps_since_restore: 0
+  training_iteration: 1
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 17.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |    loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      1 |           133.08 | 0.70985 | 0.0472015 |     0.766375 |
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 1, 
+[2m[36m(pid=35579)[0m  train loss: 0.8427308547496796
+[2m[36m(pid=35579)[0m  eval loss: 0.6994537281990051, eval err: 0.046628091335296634
+[2m[36m(pid=35579)[0m 2, 
+[2m[36m(pid=35579)[0m  train loss: 0.7673845410346984
+[2m[36m(pid=35579)[0m  eval loss: 0.6942761707305908, eval err: 0.04570952415466309
+[2m[36m(pid=35579)[0m 3, 
+[2m[36m(pid=35579)[0m  train loss: 0.8166859424114228
+[2m[36m(pid=35579)[0m  eval loss: 0.6973071682453156, eval err: 0.04609219789505005
+Result for train_3c540_00000:
+  date: 2021-09-13_11-39-23
+  done: false
+  epoch: 3
+  err: 0.04609219789505005
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 2
+  loss: 0.6973071682453156
+  loss_train: 0.8166859424114228
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 531.8513493537903
+  time_this_iter_s: 398.77126455307007
+  time_total_s: 531.8513493537903
+  timestamp: 1631525963
+  timesteps_since_restore: 0
+  training_iteration: 2
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 17.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      2 |          531.851 | 0.697307 | 0.0460922 |     0.816686 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 4, 
+[2m[36m(pid=35579)[0m  train loss: 0.8062674129009246
+[2m[36m(pid=35579)[0m  eval loss: 0.7034614551067352, eval err: 0.046495070457458494
+[2m[36m(pid=35579)[0m 5, 
+[2m[36m(pid=35579)[0m  train loss: 0.7072320544719696
+[2m[36m(pid=35579)[0m  eval loss: 0.6959541356563568, eval err: 0.04603355407714844
+[2m[36m(pid=35579)[0m 6, 
+[2m[36m(pid=35579)[0m  train loss: 0.7255062627792358
+[2m[36m(pid=35579)[0m  eval loss: 0.6927119016647338, eval err: 0.045820121765136716
+Result for train_3c540_00000:
+  date: 2021-09-13_11-46-00
+  done: false
+  epoch: 6
+  err: 0.045820121765136716
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 3
+  loss: 0.6927119016647338
+  loss_train: 0.7255062627792358
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 928.8699131011963
+  time_this_iter_s: 397.018563747406
+  time_total_s: 928.8699131011963
+  timestamp: 1631526360
+  timesteps_since_restore: 0
+  training_iteration: 3
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 17.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      3 |           928.87 | 0.692712 | 0.0458201 |     0.725506 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 7, 
+[2m[36m(pid=35579)[0m  train loss: 0.8035958921909332
+[2m[36m(pid=35579)[0m  eval loss: 0.7069602859020233, eval err: 0.046841022968292234
+[2m[36m(pid=35579)[0m 8, 
+[2m[36m(pid=35579)[0m  train loss: 0.7528821671009064
+[2m[36m(pid=35579)[0m  eval loss: 0.6973612236976624, eval err: 0.04624150037765503
+[2m[36m(pid=35579)[0m 9, 
+[2m[36m(pid=35579)[0m  train loss: 0.8058094918727875
+[2m[36m(pid=35579)[0m  eval loss: 0.696869558095932, eval err: 0.045970327854156494
+Result for train_3c540_00000:
+  date: 2021-09-13_11-52-37
+  done: false
+  epoch: 9
+  err: 0.045970327854156494
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 4
+  loss: 0.696869558095932
+  loss_train: 0.8058094918727875
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 1326.125292301178
+  time_this_iter_s: 397.2553791999817
+  time_total_s: 1326.125292301178
+  timestamp: 1631526757
+  timesteps_since_restore: 0
+  training_iteration: 4
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 17.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |    loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      4 |          1326.13 | 0.69687 | 0.0459703 |     0.805809 |
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 10, 
+[2m[36m(pid=35579)[0m  train loss: 0.7058757221698762
+[2m[36m(pid=35579)[0m  eval loss: 0.6984723556041718, eval err: 0.04594818353652954
+[2m[36m(pid=35579)[0m 11, 
+[2m[36m(pid=35579)[0m  train loss: 0.7199265170097351
+[2m[36m(pid=35579)[0m  eval loss: 0.6995904052257538, eval err: 0.046339406967163085
+[2m[36m(pid=35579)[0m 12, 
+[2m[36m(pid=35579)[0m  train loss: 0.7022615730762481
+[2m[36m(pid=35579)[0m  eval loss: 0.6943741512298583, eval err: 0.04603322267532348
+Result for train_3c540_00000:
+  date: 2021-09-13_11-59-14
+  done: false
+  epoch: 12
+  err: 0.04603322267532348
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 5
+  loss: 0.6943741512298583
+  loss_train: 0.7022615730762481
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 1722.9561953544617
+  time_this_iter_s: 396.8309030532837
+  time_total_s: 1722.9561953544617
+  timestamp: 1631527154
+  timesteps_since_restore: 0
+  training_iteration: 5
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 17.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      5 |          1722.96 | 0.694374 | 0.0460332 |     0.702262 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 13, 
+[2m[36m(pid=35579)[0m  train loss: 0.829237197637558
+[2m[36m(pid=35579)[0m  eval loss: 0.691784576177597, eval err: 0.04599115610122681
+[2m[36m(pid=35579)[0m 14, 
+[2m[36m(pid=35579)[0m  train loss: 0.8086794650554657
+[2m[36m(pid=35579)[0m  eval loss: 0.6904014492034912, eval err: 0.04559765815734863
+[2m[36m(pid=35579)[0m 15, 
+[2m[36m(pid=35579)[0m  train loss: 0.799429098367691
+[2m[36m(pid=35579)[0m  eval loss: 0.6903106904029847, eval err: 0.045801994800567625
+Result for train_3c540_00000:
+  date: 2021-09-13_12-05-51
+  done: false
+  epoch: 15
+  err: 0.045801994800567625
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 6
+  loss: 0.6903106904029847
+  loss_train: 0.799429098367691
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 2119.6882779598236
+  time_this_iter_s: 396.73208260536194
+  time_total_s: 2119.6882779598236
+  timestamp: 1631527551
+  timesteps_since_restore: 0
+  training_iteration: 6
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 17.6/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      6 |          2119.69 | 0.690311 | 0.045802 |     0.799429 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 16, 
+[2m[36m(pid=35579)[0m  train loss: 0.7862527370452881
+[2m[36m(pid=35579)[0m  eval loss: 0.6858961009979248, eval err: 0.04568397283554077
+[2m[36m(pid=35579)[0m 17, 
+[2m[36m(pid=35579)[0m  train loss: 0.7577355110645294
+[2m[36m(pid=35579)[0m  eval loss: 0.6846265411376953, eval err: 0.04531331539154053
+[2m[36m(pid=35579)[0m 18, 
+[2m[36m(pid=35579)[0m  train loss: 0.7400600433349609
+[2m[36m(pid=35579)[0m  eval loss: 0.6843019688129425, eval err: 0.04506213903427124
+Result for train_3c540_00000:
+  date: 2021-09-13_12-12-27
+  done: false
+  epoch: 18
+  err: 0.04506213903427124
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 7
+  loss: 0.6843019688129425
+  loss_train: 0.7400600433349609
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 2515.5694200992584
+  time_this_iter_s: 395.8811421394348
+  time_total_s: 2515.5694200992584
+  timestamp: 1631527947
+  timesteps_since_restore: 0
+  training_iteration: 7
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      7 |          2515.57 | 0.684302 | 0.0450621 |      0.74006 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 19, 
+[2m[36m(pid=35579)[0m  train loss: 0.7626272988319397
+[2m[36m(pid=35579)[0m  eval loss: 0.686605144739151, eval err: 0.045685105323791504
+[2m[36m(pid=35579)[0m 20, 
+[2m[36m(pid=35579)[0m  train loss: 0.6770159351825714
+[2m[36m(pid=35579)[0m  eval loss: 0.6830390512943267, eval err: 0.04534509897232056
+[2m[36m(pid=35579)[0m 21, 
+[2m[36m(pid=35579)[0m  train loss: 0.6156400609016418
+[2m[36m(pid=35579)[0m  eval loss: 0.6905950796604157, eval err: 0.0459456205368042
+Result for train_3c540_00000:
+  date: 2021-09-13_12-19-04
+  done: false
+  epoch: 21
+  err: 0.0459456205368042
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 8
+  loss: 0.6905950796604157
+  loss_train: 0.6156400609016418
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 2912.647412776947
+  time_this_iter_s: 397.0779926776886
+  time_total_s: 2912.647412776947
+  timestamp: 1631528344
+  timesteps_since_restore: 0
+  training_iteration: 8
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      8 |          2912.65 | 0.690595 | 0.0459456 |      0.61564 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 22, 
+[2m[36m(pid=35579)[0m  train loss: 0.7786451232433319
+[2m[36m(pid=35579)[0m  eval loss: 0.6873351514339447, eval err: 0.04535976648330688
+[2m[36m(pid=35579)[0m 23, 
+[2m[36m(pid=35579)[0m  train loss: 0.7548612797260285
+[2m[36m(pid=35579)[0m  eval loss: 0.6925023436546326, eval err: 0.045666730403900145
+[2m[36m(pid=35579)[0m 24, 
+[2m[36m(pid=35579)[0m  train loss: 0.6621685683727264
+[2m[36m(pid=35579)[0m  eval loss: 0.6796832597255706, eval err: 0.044927024841308595
+Result for train_3c540_00000:
+  date: 2021-09-13_12-25-41
+  done: false
+  epoch: 24
+  err: 0.044927024841308595
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 9
+  loss: 0.6796832597255706
+  loss_train: 0.6621685683727264
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 3310.249769926071
+  time_this_iter_s: 397.60235714912415
+  time_total_s: 3310.249769926071
+  timestamp: 1631528741
+  timesteps_since_restore: 0
+  training_iteration: 9
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |      9 |          3310.25 | 0.679683 | 0.044927 |     0.662169 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 25, 
+[2m[36m(pid=35579)[0m  train loss: 0.6354835093021393
+[2m[36m(pid=35579)[0m  eval loss: 0.6788097250461579, eval err: 0.044843468666076663
+[2m[36m(pid=35579)[0m 26, 
+[2m[36m(pid=35579)[0m  train loss: 0.7265119004249573
+[2m[36m(pid=35579)[0m  eval loss: 0.6807385885715485, eval err: 0.04511860609054565
+[2m[36m(pid=35579)[0m 27, 
+[2m[36m(pid=35579)[0m  train loss: 0.7572676908969879
+Result for train_3c540_00000:
+  date: 2021-09-13_12-32-19
+  done: false
+  epoch: 27
+  err: 0.04471399307250976
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 10
+  loss: 0.6778272664546967
+  loss_train: 0.7572676908969879
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 3707.822700023651
+  time_this_iter_s: 397.57293009757996
+  time_total_s: 3707.822700023651
+  timestamp: 1631529139
+  timesteps_since_restore: 0
+  training_iteration: 10
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6778272664546967, eval err: 0.04471399307250976
+== Status ==
+Memory usage on this node: 18.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     10 |          3707.82 | 0.677827 | 0.044714 |     0.757268 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 28, 
+[2m[36m(pid=35579)[0m  train loss: 0.7548448371887208
+[2m[36m(pid=35579)[0m  eval loss: 0.6817924571037293, eval err: 0.044849445819854734
+[2m[36m(pid=35579)[0m 29, 
+[2m[36m(pid=35579)[0m  train loss: 0.7293379175662994
+[2m[36m(pid=35579)[0m  eval loss: 0.674738929271698, eval err: 0.04456654071807861
+[2m[36m(pid=35579)[0m 30, 
+[2m[36m(pid=35579)[0m  train loss: 0.757170592546463
+[2m[36m(pid=35579)[0m  eval loss: 0.6810233616828918, eval err: 0.04474977970123291
+Result for train_3c540_00000:
+  date: 2021-09-13_12-38-56
+  done: false
+  epoch: 30
+  err: 0.04474977970123291
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 11
+  loss: 0.6810233616828918
+  loss_train: 0.757170592546463
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 4105.0008318424225
+  time_this_iter_s: 397.17813181877136
+  time_total_s: 4105.0008318424225
+  timestamp: 1631529536
+  timesteps_since_restore: 0
+  training_iteration: 11
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     11 |             4105 | 0.681023 | 0.0447498 |     0.757171 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 31, 
+[2m[36m(pid=35579)[0m  train loss: 0.7262989735603332
+[2m[36m(pid=35579)[0m  eval loss: 0.6804680669307709, eval err: 0.04469501256942749
+[2m[36m(pid=35579)[0m 32, 
+[2m[36m(pid=35579)[0m  train loss: 0.7260171580314636
+[2m[36m(pid=35579)[0m  eval loss: 0.6863358974456787, eval err: 0.04488034725189209
+[2m[36m(pid=35579)[0m 33, 
+[2m[36m(pid=35579)[0m  train loss: 0.7692272293567658
+Result for train_3c540_00000:
+  date: 2021-09-13_12-45-33
+  done: false
+  epoch: 33
+  err: 0.045912442207336424
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 12
+  loss: 0.6990951120853424
+  loss_train: 0.7692272293567658
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 4501.673125505447
+  time_this_iter_s: 396.6722936630249
+  time_total_s: 4501.673125505447
+  timestamp: 1631529933
+  timesteps_since_restore: 0
+  training_iteration: 12
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6990951120853424, eval err: 0.045912442207336424
+== Status ==
+Memory usage on this node: 18.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     12 |          4501.67 | 0.699095 | 0.0459124 |     0.769227 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 34, 
+[2m[36m(pid=35579)[0m  train loss: 0.7553170728683472
+[2m[36m(pid=35579)[0m  eval loss: 0.6827174007892609, eval err: 0.045090301036834715
+[2m[36m(pid=35579)[0m 35, 
+[2m[36m(pid=35579)[0m  train loss: 0.734755871295929
+[2m[36m(pid=35579)[0m  eval loss: 0.6716220021247864, eval err: 0.04440748929977417
+[2m[36m(pid=35579)[0m 36, 
+[2m[36m(pid=35579)[0m  train loss: 0.6916433310508728
+[2m[36m(pid=35579)[0m  eval loss: 0.6702861106395721, eval err: 0.044053268432617185
+Result for train_3c540_00000:
+  date: 2021-09-13_12-52-10
+  done: false
+  epoch: 36
+  err: 0.044053268432617185
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 13
+  loss: 0.6702861106395721
+  loss_train: 0.6916433310508728
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 4898.905449390411
+  time_this_iter_s: 397.232323884964
+  time_total_s: 4898.905449390411
+  timestamp: 1631530330
+  timesteps_since_restore: 0
+  training_iteration: 13
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     13 |          4898.91 | 0.670286 | 0.0440533 |     0.691643 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 37, 
+[2m[36m(pid=35579)[0m  train loss: 0.7469444406032563
+[2m[36m(pid=35579)[0m  eval loss: 0.6698832201957703, eval err: 0.04417388200759888
+[2m[36m(pid=35579)[0m 38, 
+[2m[36m(pid=35579)[0m  train loss: 0.7285423946380615
+[2m[36m(pid=35579)[0m  eval loss: 0.6679517745971679, eval err: 0.043861083984375
+[2m[36m(pid=35579)[0m 39, 
+[2m[36m(pid=35579)[0m  train loss: 0.7333697664737702
+Result for train_3c540_00000:
+  date: 2021-09-13_12-58-47
+  done: false
+  epoch: 39
+  err: 0.04423283100128174
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 14
+  loss: 0.6705471312999726
+  loss_train: 0.7333697664737702
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 5295.498596429825
+  time_this_iter_s: 396.59314703941345
+  time_total_s: 5295.498596429825
+  timestamp: 1631530727
+  timesteps_since_restore: 0
+  training_iteration: 14
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6705471312999726, eval err: 0.04423283100128174
+== Status ==
+Memory usage on this node: 18.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     14 |           5295.5 | 0.670547 | 0.0442328 |      0.73337 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 40, 
+[2m[36m(pid=35579)[0m  train loss: 0.6959173440933227
+[2m[36m(pid=35579)[0m  eval loss: 0.6692011332511902, eval err: 0.04434502124786377
+[2m[36m(pid=35579)[0m 41, 
+[2m[36m(pid=35579)[0m  train loss: 0.7330441701412201
+[2m[36m(pid=35579)[0m  eval loss: 0.668211019039154, eval err: 0.04455504179000855
+[2m[36m(pid=35579)[0m 42, 
+[2m[36m(pid=35579)[0m  train loss: 0.7949647223949432
+Result for train_3c540_00000:
+  date: 2021-09-13_13-05-24
+  done: false
+  epoch: 42
+  err: 0.04407443046569824
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 15
+  loss: 0.6734546506404877
+  loss_train: 0.7949647223949432
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 5692.666902780533
+  time_this_iter_s: 397.168306350708
+  time_total_s: 5692.666902780533
+  timestamp: 1631531124
+  timesteps_since_restore: 0
+  training_iteration: 15
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6734546506404877, eval err: 0.04407443046569824
+== Status ==
+Memory usage on this node: 18.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     15 |          5692.67 | 0.673455 | 0.0440744 |     0.794965 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 43, 
+[2m[36m(pid=35579)[0m  train loss: 0.8209910523891449
+[2m[36m(pid=35579)[0m  eval loss: 0.6686757183074952, eval err: 0.044336366653442386
+[2m[36m(pid=35579)[0m 44, 
+[2m[36m(pid=35579)[0m  train loss: 0.6869756734371185
+[2m[36m(pid=35579)[0m  eval loss: 0.6644936335086823, eval err: 0.04422791242599487
+[2m[36m(pid=35579)[0m 45, 
+[2m[36m(pid=35579)[0m  train loss: 0.747933099269867
+[2m[36m(pid=35579)[0m  eval loss: 0.6701364827156067, eval err: 0.044189677238464356
+Result for train_3c540_00000:
+  date: 2021-09-13_13-12-01
+  done: false
+  epoch: 45
+  err: 0.044189677238464356
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 16
+  loss: 0.6701364827156067
+  loss_train: 0.747933099269867
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 6090.0913002491
+  time_this_iter_s: 397.4243974685669
+  time_total_s: 6090.0913002491
+  timestamp: 1631531521
+  timesteps_since_restore: 0
+  training_iteration: 16
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     16 |          6090.09 | 0.670136 | 0.0441897 |     0.747933 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 46, 
+[2m[36m(pid=35579)[0m  train loss: 0.6533818399906158
+[2m[36m(pid=35579)[0m  eval loss: 0.6641717112064361, eval err: 0.04391263246536255
+[2m[36m(pid=35579)[0m 47, 
+[2m[36m(pid=35579)[0m  train loss: 0.7018024015426636
+[2m[36m(pid=35579)[0m  eval loss: 0.6696146976947784, eval err: 0.04424580574035644
+[2m[36m(pid=35579)[0m 48, 
+[2m[36m(pid=35579)[0m  train loss: 0.6871884965896606
+Result for train_3c540_00000:
+  date: 2021-09-13_13-18-39
+  done: false
+  epoch: 48
+  err: 0.04334144830703735
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 17
+  loss: 0.6607320308685303
+  loss_train: 0.6871884965896606
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 6487.800627231598
+  time_this_iter_s: 397.70932698249817
+  time_total_s: 6487.800627231598
+  timestamp: 1631531919
+  timesteps_since_restore: 0
+  training_iteration: 17
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6607320308685303, eval err: 0.04334144830703735
+== Status ==
+Memory usage on this node: 20.3/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     17 |           6487.8 | 0.660732 | 0.0433414 |     0.687188 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 49, 
+[2m[36m(pid=35579)[0m  train loss: 0.6820614528656006
+[2m[36m(pid=35579)[0m  eval loss: 0.6562345468997955, eval err: 0.04307775020599365
+[2m[36m(pid=35579)[0m 50, 
+[2m[36m(pid=35579)[0m  train loss: 0.671151704788208
+[2m[36m(pid=35579)[0m  eval loss: 0.6561754822731019, eval err: 0.04354975938796997
+[2m[36m(pid=35579)[0m 51, 
+[2m[36m(pid=35579)[0m  train loss: 0.7820555752515793
+Result for train_3c540_00000:
+  date: 2021-09-13_13-25-16
+  done: false
+  epoch: 51
+  err: 0.04481151580810547
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 18
+  loss: 0.6766508090496063
+  loss_train: 0.7820555752515793
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 6884.940570354462
+  time_this_iter_s: 397.13994312286377
+  time_total_s: 6884.940570354462
+  timestamp: 1631532316
+  timesteps_since_restore: 0
+  training_iteration: 18
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6766508090496063, eval err: 0.04481151580810547
+== Status ==
+Memory usage on this node: 20.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     18 |          6884.94 | 0.676651 | 0.0448115 |     0.782056 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 52, 
+[2m[36m(pid=35579)[0m  train loss: 0.6886684513092041
+[2m[36m(pid=35579)[0m  eval loss: 0.6585251653194427, eval err: 0.043291940689086914
+[2m[36m(pid=35579)[0m 53, 
+[2m[36m(pid=35579)[0m  train loss: 0.7227533960342407
+[2m[36m(pid=35579)[0m  eval loss: 0.6608249974250794, eval err: 0.043735175132751464
+[2m[36m(pid=35579)[0m 54, 
+[2m[36m(pid=35579)[0m  train loss: 0.7068853330612183
+[2m[36m(pid=35579)[0m  eval loss: 0.6706775033473968, eval err: 0.04475092887878418
+Result for train_3c540_00000:
+  date: 2021-09-13_13-31-52
+  done: false
+  epoch: 54
+  err: 0.04475092887878418
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 19
+  loss: 0.6706775033473968
+  loss_train: 0.7068853330612183
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 7281.13835310936
+  time_this_iter_s: 396.19778275489807
+  time_total_s: 7281.13835310936
+  timestamp: 1631532712
+  timesteps_since_restore: 0
+  training_iteration: 19
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 21.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     19 |          7281.14 | 0.670678 | 0.0447509 |     0.706885 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 55, 
+[2m[36m(pid=35579)[0m  train loss: 0.6935456895828247
+[2m[36m(pid=35579)[0m  eval loss: 0.6666752648353577, eval err: 0.044332275390625
+[2m[36m(pid=35579)[0m 56, 
+[2m[36m(pid=35579)[0m  train loss: 0.6667648577690124
+[2m[36m(pid=35579)[0m  eval loss: 0.665169347524643, eval err: 0.043626294136047364
+[2m[36m(pid=35579)[0m 57, 
+[2m[36m(pid=35579)[0m  train loss: 0.6307590985298157
+[2m[36m(pid=35579)[0m  eval loss: 0.6687935757637024, eval err: 0.04410921573638916
+Result for train_3c540_00000:
+  date: 2021-09-13_13-38-29
+  done: false
+  epoch: 57
+  err: 0.04410921573638916
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 20
+  loss: 0.6687935757637024
+  loss_train: 0.6307590985298157
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 7678.066422700882
+  time_this_iter_s: 396.9280695915222
+  time_total_s: 7678.066422700882
+  timestamp: 1631533109
+  timesteps_since_restore: 0
+  training_iteration: 20
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 21.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     20 |          7678.07 | 0.668794 | 0.0441092 |     0.630759 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 58, 
+[2m[36m(pid=35579)[0m  train loss: 0.6520684063434601
+[2m[36m(pid=35579)[0m  eval loss: 0.6694867241382599, eval err: 0.04377371549606323
+[2m[36m(pid=35579)[0m 59, 
+[2m[36m(pid=35579)[0m  train loss: 0.6689953136444092
+[2m[36m(pid=35579)[0m  eval loss: 0.6444391369819641, eval err: 0.0424112606048584
+[2m[36m(pid=35579)[0m 60, 
+[2m[36m(pid=35579)[0m  train loss: 0.7107488083839416
+Result for train_3c540_00000:
+  date: 2021-09-13_13-45-06
+  done: false
+  epoch: 60
+  err: 0.04340210199356079
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 21
+  loss: 0.6630630159378051
+  loss_train: 0.7107488083839416
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 8074.641664981842
+  time_this_iter_s: 396.5752422809601
+  time_total_s: 8074.641664981842
+  timestamp: 1631533506
+  timesteps_since_restore: 0
+  training_iteration: 21
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6630630159378051, eval err: 0.04340210199356079
+== Status ==
+Memory usage on this node: 21.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     21 |          8074.64 | 0.663063 | 0.0434021 |     0.710749 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 61, 
+[2m[36m(pid=35579)[0m  train loss: 0.7452292084693909
+[2m[36m(pid=35579)[0m  eval loss: 0.6698547434806824, eval err: 0.04344935417175293
+[2m[36m(pid=35579)[0m 62, 
+[2m[36m(pid=35579)[0m  train loss: 0.6030272209644317
+[2m[36m(pid=35579)[0m  eval loss: 0.6568045318126678, eval err: 0.0435841703414917
+[2m[36m(pid=35579)[0m 63, 
+[2m[36m(pid=35579)[0m  train loss: 0.5762747740745544
+[2m[36m(pid=35579)[0m  eval loss: 0.6520285451412201, eval err: 0.043010551929473874
+Result for train_3c540_00000:
+  date: 2021-09-13_13-51-42
+  done: false
+  epoch: 63
+  err: 0.043010551929473874
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 22
+  loss: 0.6520285451412201
+  loss_train: 0.5762747740745544
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 8470.744426488876
+  time_this_iter_s: 396.1027615070343
+  time_total_s: 8470.744426488876
+  timestamp: 1631533902
+  timesteps_since_restore: 0
+  training_iteration: 22
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 21.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     22 |          8470.74 | 0.652029 | 0.0430106 |     0.576275 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 64, 
+[2m[36m(pid=35579)[0m  train loss: 0.6886606180667877
+[2m[36m(pid=35579)[0m  eval loss: 0.6503802824020386, eval err: 0.04318848609924317
+[2m[36m(pid=35579)[0m 65, 
+[2m[36m(pid=35579)[0m  train loss: 0.6846033668518067
+[2m[36m(pid=35579)[0m  eval loss: 0.6577837717533112, eval err: 0.04336733341217041
+[2m[36m(pid=35579)[0m 66, 
+[2m[36m(pid=35579)[0m  train loss: 0.6761237049102783
+[2m[36m(pid=35579)[0m  eval loss: 0.6812436592578888, eval err: 0.04420981884002686
+Result for train_3c540_00000:
+  date: 2021-09-13_13-58-18
+  done: false
+  epoch: 66
+  err: 0.04420981884002686
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 23
+  loss: 0.6812436592578888
+  loss_train: 0.6761237049102783
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 8866.634840726852
+  time_this_iter_s: 395.8904142379761
+  time_total_s: 8866.634840726852
+  timestamp: 1631534298
+  timesteps_since_restore: 0
+  training_iteration: 23
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 21.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     23 |          8866.63 | 0.681244 | 0.0442098 |     0.676124 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 67, 
+[2m[36m(pid=35579)[0m  train loss: 0.6626385104656219
+[2m[36m(pid=35579)[0m  eval loss: 0.6467239332199096, eval err: 0.04287213087081909
+[2m[36m(pid=35579)[0m 68, 
+[2m[36m(pid=35579)[0m  train loss: 0.7178669595718383
+[2m[36m(pid=35579)[0m  eval loss: 0.6541963851451874, eval err: 0.04283507347106934
+[2m[36m(pid=35579)[0m 69, 
+[2m[36m(pid=35579)[0m  train loss: 0.6763133990764618
+[2m[36m(pid=35579)[0m  eval loss: 0.6655082893371582, eval err: 0.04346785306930542
+Result for train_3c540_00000:
+  date: 2021-09-13_14-04-54
+  done: false
+  epoch: 69
+  err: 0.04346785306930542
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 24
+  loss: 0.6655082893371582
+  loss_train: 0.6763133990764618
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 9262.504101514816
+  time_this_iter_s: 395.86926078796387
+  time_total_s: 9262.504101514816
+  timestamp: 1631534694
+  timesteps_since_restore: 0
+  training_iteration: 24
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 20.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     24 |           9262.5 | 0.665508 | 0.0434679 |     0.676313 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 70, 
+[2m[36m(pid=35579)[0m  train loss: 0.644533679485321
+[2m[36m(pid=35579)[0m  eval loss: 0.6489675569534302, eval err: 0.04269458293914795
+[2m[36m(pid=35579)[0m 71, 
+[2m[36m(pid=35579)[0m  train loss: 0.6294016313552856
+[2m[36m(pid=35579)[0m  eval loss: 0.6496748685836792, eval err: 0.0426371955871582
+[2m[36m(pid=35579)[0m 72, 
+[2m[36m(pid=35579)[0m  train loss: 0.6933996593952179
+[2m[36m(pid=35579)[0m  eval loss: 0.643687652349472, eval err: 0.042381491661071774
+Result for train_3c540_00000:
+  date: 2021-09-13_14-11-30
+  done: false
+  epoch: 72
+  err: 0.042381491661071774
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 25
+  loss: 0.643687652349472
+  loss_train: 0.6933996593952179
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 9658.690549135208
+  time_this_iter_s: 396.18644762039185
+  time_total_s: 9658.690549135208
+  timestamp: 1631535090
+  timesteps_since_restore: 0
+  training_iteration: 25
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     25 |          9658.69 | 0.643688 | 0.0423815 |       0.6934 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 73, 
+[2m[36m(pid=35579)[0m  train loss: 0.7315364468097687
+[2m[36m(pid=35579)[0m  eval loss: 0.6455912518501282, eval err: 0.04252819538116455
+[2m[36m(pid=35579)[0m 74, 
+[2m[36m(pid=35579)[0m  train loss: 0.6646632051467896
+[2m[36m(pid=35579)[0m  eval loss: 0.6456830620765686, eval err: 0.04244145393371582
+[2m[36m(pid=35579)[0m 75, 
+[2m[36m(pid=35579)[0m  train loss: 0.708062641620636
+Result for train_3c540_00000:
+  date: 2021-09-13_14-18-06
+  done: false
+  epoch: 75
+  err: 0.04234907627105713
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 26
+  loss: 0.6432573628425599
+  loss_train: 0.708062641620636
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 10055.095124006271
+  time_this_iter_s: 396.40457487106323
+  time_total_s: 10055.095124006271
+  timestamp: 1631535486
+  timesteps_since_restore: 0
+  training_iteration: 26
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     26 |          10055.1 | 0.643257 | 0.0423491 |     0.708063 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m  eval loss: 0.6432573628425599, eval err: 0.04234907627105713
+[2m[36m(pid=35579)[0m 76, 
+[2m[36m(pid=35579)[0m  train loss: 0.6721079468727111
+[2m[36m(pid=35579)[0m  eval loss: 0.6431889021396637, eval err: 0.042276439666748045
+[2m[36m(pid=35579)[0m 77, 
+[2m[36m(pid=35579)[0m  train loss: 0.6359362125396728
+[2m[36m(pid=35579)[0m  eval loss: 0.6419426596164703, eval err: 0.04204605579376221
+[2m[36m(pid=35579)[0m 78, 
+[2m[36m(pid=35579)[0m  train loss: 0.6112540996074677
+[2m[36m(pid=35579)[0m  eval loss: 0.64425048828125, eval err: 0.04240057945251465
+Result for train_3c540_00000:
+  date: 2021-09-13_14-24-44
+  done: false
+  epoch: 78
+  err: 0.04240057945251465
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 27
+  loss: 0.64425048828125
+  loss_train: 0.6112540996074677
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 10453.317087888718
+  time_this_iter_s: 398.2219638824463
+  time_total_s: 10453.317087888718
+  timestamp: 1631535884
+  timesteps_since_restore: 0
+  training_iteration: 27
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |    loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     27 |          10453.3 | 0.64425 | 0.0424006 |     0.611254 |
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 79, 
+[2m[36m(pid=35579)[0m  train loss: 0.6584632480144501
+[2m[36m(pid=35579)[0m  eval loss: 0.6411649405956268, eval err: 0.04198076486587524
+[2m[36m(pid=35579)[0m 80, 
+[2m[36m(pid=35579)[0m  train loss: 0.7194932007789612
+[2m[36m(pid=35579)[0m  eval loss: 0.6428977751731872, eval err: 0.042205491065979005
+[2m[36m(pid=35579)[0m 81, 
+[2m[36m(pid=35579)[0m  train loss: 0.6416429662704468
+[2m[36m(pid=35579)[0m  eval loss: 0.6449012744426728, eval err: 0.04224137306213379
+Result for train_3c540_00000:
+  date: 2021-09-13_14-31-22
+  done: false
+  epoch: 81
+  err: 0.04224137306213379
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 28
+  loss: 0.6449012744426728
+  loss_train: 0.6416429662704468
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 10850.622121095657
+  time_this_iter_s: 397.3050332069397
+  time_total_s: 10850.622121095657
+  timestamp: 1631536282
+  timesteps_since_restore: 0
+  training_iteration: 28
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 18.6/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     28 |          10850.6 | 0.644901 | 0.0422414 |     0.641643 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 82, 
+[2m[36m(pid=35579)[0m  train loss: 0.6636159408092499
+[2m[36m(pid=35579)[0m  eval loss: 0.645772569179535, eval err: 0.04225910902023315
+[2m[36m(pid=35579)[0m 83, 
+[2m[36m(pid=35579)[0m  train loss: 0.7165059804916382
+[2m[36m(pid=35579)[0m  eval loss: 0.6442690777778626, eval err: 0.04203510761260986
+[2m[36m(pid=35579)[0m 84, 
+[2m[36m(pid=35579)[0m  train loss: 0.6623804712295532
+[2m[36m(pid=35579)[0m  eval loss: 0.6406364345550537, eval err: 0.04181453943252564
+Result for train_3c540_00000:
+  date: 2021-09-13_14-38-00
+  done: false
+  epoch: 84
+  err: 0.04181453943252564
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 29
+  loss: 0.6406364345550537
+  loss_train: 0.6623804712295532
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 11249.175724029541
+  time_this_iter_s: 398.55360293388367
+  time_total_s: 11249.175724029541
+  timestamp: 1631536680
+  timesteps_since_restore: 0
+  training_iteration: 29
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 22.4/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     29 |          11249.2 | 0.640636 | 0.0418145 |      0.66238 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 85, 
+[2m[36m(pid=35579)[0m  train loss: 0.6644628238677979
+[2m[36m(pid=35579)[0m  eval loss: 0.6432662546634674, eval err: 0.042271056175231934
+[2m[36m(pid=35579)[0m 86, 
+[2m[36m(pid=35579)[0m  train loss: 0.6953327333927155
+[2m[36m(pid=35579)[0m  eval loss: 0.6416210079193115, eval err: 0.04203284740447998
+[2m[36m(pid=35579)[0m 87, 
+[2m[36m(pid=35579)[0m  train loss: 0.6654786682128906
+[2m[36m(pid=35579)[0m  eval loss: 0.6410452365875244, eval err: 0.04221517562866211
+Result for train_3c540_00000:
+  date: 2021-09-13_14-44-35
+  done: false
+  epoch: 87
+  err: 0.04221517562866211
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 30
+  loss: 0.6410452365875244
+  loss_train: 0.6654786682128906
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 11644.237018585205
+  time_this_iter_s: 395.06129455566406
+  time_total_s: 11644.237018585205
+  timestamp: 1631537075
+  timesteps_since_restore: 0
+  training_iteration: 30
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     30 |          11644.2 | 0.641045 | 0.0422152 |     0.665479 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 88, 
+[2m[36m(pid=35579)[0m  train loss: 0.6427790236473083
+[2m[36m(pid=35579)[0m  eval loss: 0.63866086602211, eval err: 0.04187679529190064
+[2m[36m(pid=35579)[0m 89, 
+[2m[36m(pid=35579)[0m  train loss: 0.6779801833629608
+[2m[36m(pid=35579)[0m  eval loss: 0.6405734598636628, eval err: 0.04216736316680908
+[2m[36m(pid=35579)[0m 90, 
+[2m[36m(pid=35579)[0m  train loss: 0.6596345889568329
+[2m[36m(pid=35579)[0m  eval loss: 0.6397977161407471, eval err: 0.04208813428878784
+Result for train_3c540_00000:
+  date: 2021-09-13_14-50-56
+  done: false
+  epoch: 90
+  err: 0.04208813428878784
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 31
+  loss: 0.6397977161407471
+  loss_train: 0.6596345889568329
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 12024.726078748703
+  time_this_iter_s: 380.4890601634979
+  time_total_s: 12024.726078748703
+  timestamp: 1631537456
+  timesteps_since_restore: 0
+  training_iteration: 31
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     31 |          12024.7 | 0.639798 | 0.0420881 |     0.659635 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 91, 
+[2m[36m(pid=35579)[0m  train loss: 0.6471691751480102
+[2m[36m(pid=35579)[0m  eval loss: 0.6445021831989288, eval err: 0.04238358497619629
+[2m[36m(pid=35579)[0m 92, 
+[2m[36m(pid=35579)[0m  train loss: 0.6613471472263336
+[2m[36m(pid=35579)[0m  eval loss: 0.6391488265991211, eval err: 0.041789295673370364
+[2m[36m(pid=35579)[0m 93, 
+[2m[36m(pid=35579)[0m  train loss: 0.6901688277721405
+Result for train_3c540_00000:
+  date: 2021-09-13_14-57-14
+  done: false
+  epoch: 93
+  err: 0.0421075177192688
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 32
+  loss: 0.6425283992290497
+  loss_train: 0.6901688277721405
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 12402.551182508469
+  time_this_iter_s: 377.8251037597656
+  time_total_s: 12402.551182508469
+  timestamp: 1631537834
+  timesteps_since_restore: 0
+  training_iteration: 32
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6425283992290497, eval err: 0.0421075177192688
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     32 |          12402.6 | 0.642528 | 0.0421075 |     0.690169 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 94, 
+[2m[36m(pid=35579)[0m  train loss: 0.6041008663177491
+[2m[36m(pid=35579)[0m  eval loss: 0.6416042101383209, eval err: 0.04201733112335205
+[2m[36m(pid=35579)[0m 95, 
+[2m[36m(pid=35579)[0m  train loss: 0.6401930105686188
+[2m[36m(pid=35579)[0m  eval loss: 0.643119044303894, eval err: 0.042368960380554196
+[2m[36m(pid=35579)[0m 96, 
+[2m[36m(pid=35579)[0m  train loss: 0.6164420306682586
+[2m[36m(pid=35579)[0m  eval loss: 0.6381672203540802, eval err: 0.04201061248779297
+Result for train_3c540_00000:
+  date: 2021-09-13_15-03-31
+  done: false
+  epoch: 96
+  err: 0.04201061248779297
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 33
+  loss: 0.6381672203540802
+  loss_train: 0.6164420306682586
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 12779.507608175278
+  time_this_iter_s: 376.9564256668091
+  time_total_s: 12779.507608175278
+  timestamp: 1631538211
+  timesteps_since_restore: 0
+  training_iteration: 33
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     33 |          12779.5 | 0.638167 | 0.0420106 |     0.616442 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 97, 
+[2m[36m(pid=35579)[0m  train loss: 0.679557079076767
+[2m[36m(pid=35579)[0m  eval loss: 0.6424044775962829, eval err: 0.042164132595062256
+[2m[36m(pid=35579)[0m 98, 
+[2m[36m(pid=35579)[0m  train loss: 0.6237158989906311
+[2m[36m(pid=35579)[0m  eval loss: 0.6403103971481323, eval err: 0.0421304726600647
+[2m[36m(pid=35579)[0m 99, 
+[2m[36m(pid=35579)[0m  train loss: 0.563191705942154
+[2m[36m(pid=35579)[0m  eval loss: 0.6412953603267669, eval err: 0.04225396156311035
+Result for train_3c540_00000:
+  date: 2021-09-13_15-09-48
+  done: false
+  epoch: 99
+  err: 0.04225396156311035
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 34
+  loss: 0.6412953603267669
+  loss_train: 0.563191705942154
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 13156.711769104004
+  time_this_iter_s: 377.2041609287262
+  time_total_s: 13156.711769104004
+  timestamp: 1631538588
+  timesteps_since_restore: 0
+  training_iteration: 34
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     34 |          13156.7 | 0.641295 | 0.042254 |     0.563192 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 100, 
+[2m[36m(pid=35579)[0m  train loss: 0.6225377368927002
+[2m[36m(pid=35579)[0m  eval loss: 0.6405724859237671, eval err: 0.04206053018569946
+[2m[36m(pid=35579)[0m 101, 
+[2m[36m(pid=35579)[0m  train loss: 0.6599570035934448
+[2m[36m(pid=35579)[0m  eval loss: 0.6358277368545532, eval err: 0.041712923049926756
+[2m[36m(pid=35579)[0m 102, 
+[2m[36m(pid=35579)[0m  train loss: 0.6885990869998931
+[2m[36m(pid=35579)[0m  eval loss: 0.6380848073959351, eval err: 0.04189530849456787
+Result for train_3c540_00000:
+  date: 2021-09-13_15-16-05
+  done: false
+  epoch: 102
+  err: 0.04189530849456787
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 35
+  loss: 0.6380848073959351
+  loss_train: 0.6885990869998931
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 13534.215694665909
+  time_this_iter_s: 377.5039255619049
+  time_total_s: 13534.215694665909
+  timestamp: 1631538965
+  timesteps_since_restore: 0
+  training_iteration: 35
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     35 |          13534.2 | 0.638085 | 0.0418953 |     0.688599 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 103, 
+[2m[36m(pid=35579)[0m  train loss: 0.7097839045524598
+[2m[36m(pid=35579)[0m  eval loss: 0.6389972615242004, eval err: 0.04174413442611694
+[2m[36m(pid=35579)[0m 104, 
+[2m[36m(pid=35579)[0m  train loss: 0.6422868990898132
+[2m[36m(pid=35579)[0m  eval loss: 0.6396543538570404, eval err: 0.041994826793670656
+[2m[36m(pid=35579)[0m 105, 
+[2m[36m(pid=35579)[0m  train loss: 0.6377343213558198
+Result for train_3c540_00000:
+  date: 2021-09-13_15-22-22
+  done: false
+  epoch: 105
+  err: 0.041589159965515134
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 36
+  loss: 0.6349130952358246
+  loss_train: 0.6377343213558198
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 13911.162904024124
+  time_this_iter_s: 376.94720935821533
+  time_total_s: 13911.162904024124
+  timestamp: 1631539342
+  timesteps_since_restore: 0
+  training_iteration: 36
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6349130952358246, eval err: 0.041589159965515134
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     36 |          13911.2 | 0.634913 | 0.0415892 |     0.637734 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 106, 
+[2m[36m(pid=35579)[0m  train loss: 0.6932240855693818
+[2m[36m(pid=35579)[0m  eval loss: 0.6468941617012024, eval err: 0.04224283933639526
+[2m[36m(pid=35579)[0m 107, 
+[2m[36m(pid=35579)[0m  train loss: 0.6902145290374756
+[2m[36m(pid=35579)[0m  eval loss: 0.6346656441688537, eval err: 0.04165803670883179
+[2m[36m(pid=35579)[0m 108, 
+[2m[36m(pid=35579)[0m  train loss: 0.6624599063396454
+Result for train_3c540_00000:
+  date: 2021-09-13_15-28-39
+  done: false
+  epoch: 108
+  err: 0.041832284927368166
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 37
+  loss: 0.6388650715351105
+  loss_train: 0.6624599063396454
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 14288.351323127747
+  time_this_iter_s: 377.18841910362244
+  time_total_s: 14288.351323127747
+  timestamp: 1631539719
+  timesteps_since_restore: 0
+  training_iteration: 37
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6388650715351105, eval err: 0.041832284927368166
+== Status ==
+Memory usage on this node: 16.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     37 |          14288.4 | 0.638865 | 0.0418323 |      0.66246 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 109, 
+[2m[36m(pid=35579)[0m  train loss: 0.6535855460166932
+[2m[36m(pid=35579)[0m  eval loss: 0.6415136885643006, eval err: 0.04194087505340576
+[2m[36m(pid=35579)[0m 110, 
+[2m[36m(pid=35579)[0m  train loss: 0.6368971610069275
+[2m[36m(pid=35579)[0m  eval loss: 0.6390112102031708, eval err: 0.04191774845123291
+[2m[36m(pid=35579)[0m 111, 
+[2m[36m(pid=35579)[0m  train loss: 0.7061530649662018
+[2m[36m(pid=35579)[0m  eval loss: 0.6387299382686615, eval err: 0.041977338790893555
+Result for train_3c540_00000:
+  date: 2021-09-13_15-34-57
+  done: false
+  epoch: 111
+  err: 0.041977338790893555
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 38
+  loss: 0.6387299382686615
+  loss_train: 0.7061530649662018
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 14665.791343212128
+  time_this_iter_s: 377.4400200843811
+  time_total_s: 14665.791343212128
+  timestamp: 1631540097
+  timesteps_since_restore: 0
+  training_iteration: 38
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |    loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     38 |          14665.8 | 0.63873 | 0.0419773 |     0.706153 |
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 112, 
+[2m[36m(pid=35579)[0m  train loss: 0.6877384746074676
+[2m[36m(pid=35579)[0m  eval loss: 0.6338185620307922, eval err: 0.0418391227722168
+[2m[36m(pid=35579)[0m 113, 
+[2m[36m(pid=35579)[0m  train loss: 0.6461757373809814
+[2m[36m(pid=35579)[0m  eval loss: 0.6375711476802826, eval err: 0.04182846784591675
+[2m[36m(pid=35579)[0m 114, 
+[2m[36m(pid=35579)[0m  train loss: 0.6553890967369079
+[2m[36m(pid=35579)[0m  eval loss: 0.6375206220149994, eval err: 0.042020010948181155
+Result for train_3c540_00000:
+  date: 2021-09-13_15-41-15
+  done: false
+  epoch: 114
+  err: 0.042020010948181155
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 39
+  loss: 0.6375206220149994
+  loss_train: 0.6553890967369079
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 15043.442970991135
+  time_this_iter_s: 377.65162777900696
+  time_total_s: 15043.442970991135
+  timestamp: 1631540475
+  timesteps_since_restore: 0
+  training_iteration: 39
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+---------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |     err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+---------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     39 |          15043.4 | 0.637521 | 0.04202 |     0.655389 |
++-------------------+----------+--------------------+--------+------------------+----------+---------+--------------+
+
+
+[2m[36m(pid=35579)[0m 115, 
+[2m[36m(pid=35579)[0m  train loss: 0.6875397050380707
+[2m[36m(pid=35579)[0m  eval loss: 0.6394241464138031, eval err: 0.04206878185272217
+[2m[36m(pid=35579)[0m 116, 
+[2m[36m(pid=35579)[0m  train loss: 0.6766514074802399
+[2m[36m(pid=35579)[0m  eval loss: 0.6401270699501037, eval err: 0.04192029237747193
+[2m[36m(pid=35579)[0m 117, 
+[2m[36m(pid=35579)[0m  train loss: 0.6780232775211334
+[2m[36m(pid=35579)[0m  eval loss: 0.6405782330036164, eval err: 0.041917479038238524
+Result for train_3c540_00000:
+  date: 2021-09-13_15-47-33
+  done: false
+  epoch: 117
+  err: 0.041917479038238524
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 40
+  loss: 0.6405782330036164
+  loss_train: 0.6780232775211334
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 15421.644265651703
+  time_this_iter_s: 378.20129466056824
+  time_total_s: 15421.644265651703
+  timestamp: 1631540853
+  timesteps_since_restore: 0
+  training_iteration: 40
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     40 |          15421.6 | 0.640578 | 0.0419175 |     0.678023 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 118, 
+[2m[36m(pid=35579)[0m  train loss: 0.659669634103775
+[2m[36m(pid=35579)[0m  eval loss: 0.6378275263309479, eval err: 0.04197751760482788
+[2m[36m(pid=35579)[0m 119, 
+[2m[36m(pid=35579)[0m  train loss: 0.6024180233478547
+[2m[36m(pid=35579)[0m  eval loss: 0.6404053103923798, eval err: 0.04196316719055176
+[2m[36m(pid=35579)[0m 120, 
+[2m[36m(pid=35579)[0m  train loss: 0.5980082011222839
+[2m[36m(pid=35579)[0m  eval loss: 0.6392336368560791, eval err: 0.04208709239959717
+Result for train_3c540_00000:
+  date: 2021-09-13_15-53-50
+  done: false
+  epoch: 120
+  err: 0.04208709239959717
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 41
+  loss: 0.6392336368560791
+  loss_train: 0.5980082011222839
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 15799.340204238892
+  time_this_iter_s: 377.6959385871887
+  time_total_s: 15799.340204238892
+  timestamp: 1631541230
+  timesteps_since_restore: 0
+  training_iteration: 41
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     41 |          15799.3 | 0.639234 | 0.0420871 |     0.598008 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 121, 
+[2m[36m(pid=35579)[0m  train loss: 0.6782780337333679
+[2m[36m(pid=35579)[0m  eval loss: 0.6371298110485077, eval err: 0.041702437400817874
+[2m[36m(pid=35579)[0m 122, 
+[2m[36m(pid=35579)[0m  train loss: 0.5997250616550446
+[2m[36m(pid=35579)[0m  eval loss: 0.6393172264099121, eval err: 0.04193048477172852
+[2m[36m(pid=35579)[0m 123, 
+[2m[36m(pid=35579)[0m  train loss: 0.6102525949478149
+[2m[36m(pid=35579)[0m  eval loss: 0.6429767215251923, eval err: 0.04219598293304443
+Result for train_3c540_00000:
+  date: 2021-09-13_16-00-09
+  done: false
+  epoch: 123
+  err: 0.04219598293304443
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 42
+  loss: 0.6429767215251923
+  loss_train: 0.6102525949478149
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 16178.28031039238
+  time_this_iter_s: 378.94010615348816
+  time_total_s: 16178.28031039238
+  timestamp: 1631541609
+  timesteps_since_restore: 0
+  training_iteration: 42
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     42 |          16178.3 | 0.642977 | 0.042196 |     0.610253 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 124, 
+[2m[36m(pid=35579)[0m  train loss: 0.6492423129081726
+[2m[36m(pid=35579)[0m  eval loss: 0.6373962616920471, eval err: 0.04154269695281983
+[2m[36m(pid=35579)[0m 125, 
+[2m[36m(pid=35579)[0m  train loss: 0.5742460775375366
+[2m[36m(pid=35579)[0m  eval loss: 0.6390614378452301, eval err: 0.042176482677459715
+[2m[36m(pid=35579)[0m 126, 
+[2m[36m(pid=35579)[0m  train loss: 0.6649218332767487
+[2m[36m(pid=35579)[0m  eval loss: 0.6346175491809845, eval err: 0.0417032265663147
+Result for train_3c540_00000:
+  date: 2021-09-13_16-06-27
+  done: false
+  epoch: 126
+  err: 0.0417032265663147
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 43
+  loss: 0.6346175491809845
+  loss_train: 0.6649218332767487
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 16556.018953084946
+  time_this_iter_s: 377.7386426925659
+  time_total_s: 16556.018953084946
+  timestamp: 1631541987
+  timesteps_since_restore: 0
+  training_iteration: 43
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 16.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     43 |            16556 | 0.634618 | 0.0417032 |     0.664922 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 127, 
+[2m[36m(pid=35579)[0m  train loss: 0.553969075679779
+[2m[36m(pid=35579)[0m  eval loss: 0.6343614614009857, eval err: 0.04161390542984009
+[2m[36m(pid=35579)[0m 128, 
+[2m[36m(pid=35579)[0m  train loss: 0.6551486682891846
+[2m[36m(pid=35579)[0m  eval loss: 0.6349239039421082, eval err: 0.041657519340515134
+[2m[36m(pid=35579)[0m 129, 
+[2m[36m(pid=35579)[0m  train loss: 0.666311776638031
+[2m[36m(pid=35579)[0m  eval loss: 0.6328853511810303, eval err: 0.04132059335708618
+Result for train_3c540_00000:
+  date: 2021-09-13_16-12-45
+  done: false
+  epoch: 129
+  err: 0.04132059335708618
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 44
+  loss: 0.6328853511810303
+  loss_train: 0.666311776638031
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 16933.44000864029
+  time_this_iter_s: 377.4210555553436
+  time_total_s: 16933.44000864029
+  timestamp: 1631542365
+  timesteps_since_restore: 0
+  training_iteration: 44
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 16.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     44 |          16933.4 | 0.632885 | 0.0413206 |     0.666312 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 130, 
+[2m[36m(pid=35579)[0m  train loss: 0.6212027657032013
+[2m[36m(pid=35579)[0m  eval loss: 0.6371725749969482, eval err: 0.042110538482666014
+[2m[36m(pid=35579)[0m 131, 
+[2m[36m(pid=35579)[0m  train loss: 0.6616864466667175
+[2m[36m(pid=35579)[0m  eval loss: 0.6344414675235748, eval err: 0.04150140762329101
+[2m[36m(pid=35579)[0m 132, 
+[2m[36m(pid=35579)[0m  train loss: 0.6210548436641693
+Result for train_3c540_00000:
+  date: 2021-09-13_16-19-02
+  done: false
+  epoch: 132
+  err: 0.04145662069320679
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 45
+  loss: 0.6324627768993377
+  loss_train: 0.6210548436641693
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 17311.032784461975
+  time_this_iter_s: 377.5927758216858
+  time_total_s: 17311.032784461975
+  timestamp: 1631542742
+  timesteps_since_restore: 0
+  training_iteration: 45
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6324627768993377, eval err: 0.04145662069320679
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     45 |            17311 | 0.632463 | 0.0414566 |     0.621055 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 133, 
+[2m[36m(pid=35579)[0m  train loss: 0.6030838680267334
+[2m[36m(pid=35579)[0m  eval loss: 0.6381445717811585, eval err: 0.041894590854644774
+[2m[36m(pid=35579)[0m 134, 
+[2m[36m(pid=35579)[0m  train loss: 0.7143979012966156
+[2m[36m(pid=35579)[0m  eval loss: 0.6303392207622528, eval err: 0.04120522975921631
+[2m[36m(pid=35579)[0m 135, 
+[2m[36m(pid=35579)[0m  train loss: 0.6812181305885315
+[2m[36m(pid=35579)[0m  eval loss: 0.6312027192115783, eval err: 0.04123307228088379
+Result for train_3c540_00000:
+  date: 2021-09-13_16-25-20
+  done: false
+  epoch: 135
+  err: 0.04123307228088379
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 46
+  loss: 0.6312027192115783
+  loss_train: 0.6812181305885315
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 17689.245066404343
+  time_this_iter_s: 378.21228194236755
+  time_total_s: 17689.245066404343
+  timestamp: 1631543120
+  timesteps_since_restore: 0
+  training_iteration: 46
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     46 |          17689.2 | 0.631203 | 0.0412331 |     0.681218 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 136, 
+[2m[36m(pid=35579)[0m  train loss: 0.5441946113109588
+[2m[36m(pid=35579)[0m  eval loss: 0.6314403522014618, eval err: 0.04142191171646118
+[2m[36m(pid=35579)[0m 137, 
+[2m[36m(pid=35579)[0m  train loss: 0.5975251817703247
+[2m[36m(pid=35579)[0m  eval loss: 0.6361571443080902, eval err: 0.041786978244781496
+[2m[36m(pid=35579)[0m 138, 
+[2m[36m(pid=35579)[0m  train loss: 0.6366545653343201
+[2m[36m(pid=35579)[0m  eval loss: 0.6296502459049225, eval err: 0.04134267807006836
+Result for train_3c540_00000:
+  date: 2021-09-13_16-31-38
+  done: false
+  epoch: 138
+  err: 0.04134267807006836
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 47
+  loss: 0.6296502459049225
+  loss_train: 0.6366545653343201
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 18066.508427619934
+  time_this_iter_s: 377.26336121559143
+  time_total_s: 18066.508427619934
+  timestamp: 1631543498
+  timesteps_since_restore: 0
+  training_iteration: 47
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |    loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     47 |          18066.5 | 0.62965 | 0.0413427 |     0.636655 |
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 139, 
+[2m[36m(pid=35579)[0m  train loss: 0.5956880009174347
+[2m[36m(pid=35579)[0m  eval loss: 0.6280226349830628, eval err: 0.04132013320922852
+[2m[36m(pid=35579)[0m 140, 
+[2m[36m(pid=35579)[0m  train loss: 0.6743731653690338
+[2m[36m(pid=35579)[0m  eval loss: 0.6310651004314423, eval err: 0.041420738697052005
+[2m[36m(pid=35579)[0m 141, 
+[2m[36m(pid=35579)[0m  train loss: 0.6660404562950134
+[2m[36m(pid=35579)[0m  eval loss: 0.6363014340400696, eval err: 0.04175727128982544
+Result for train_3c540_00000:
+  date: 2021-09-13_16-37-55
+  done: false
+  epoch: 141
+  err: 0.04175727128982544
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 48
+  loss: 0.6363014340400696
+  loss_train: 0.6660404562950134
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 18444.31331062317
+  time_this_iter_s: 377.80488300323486
+  time_total_s: 18444.31331062317
+  timestamp: 1631543875
+  timesteps_since_restore: 0
+  training_iteration: 48
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     48 |          18444.3 | 0.636301 | 0.0417573 |      0.66604 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 142, 
+[2m[36m(pid=35579)[0m  train loss: 0.6190351462364196
+[2m[36m(pid=35579)[0m  eval loss: 0.6336189925670623, eval err: 0.04158989429473877
+[2m[36m(pid=35579)[0m 143, 
+[2m[36m(pid=35579)[0m  train loss: 0.6570400559902191
+[2m[36m(pid=35579)[0m  eval loss: 0.6309720134735107, eval err: 0.041183626651763915
+[2m[36m(pid=35579)[0m 144, 
+[2m[36m(pid=35579)[0m  train loss: 0.7087558746337891
+[2m[36m(pid=35579)[0m  eval loss: 0.631337147951126, eval err: 0.04150373697280884
+Result for train_3c540_00000:
+  date: 2021-09-13_16-44-13
+  done: false
+  epoch: 144
+  err: 0.04150373697280884
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 49
+  loss: 0.631337147951126
+  loss_train: 0.7087558746337891
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 18822.00800728798
+  time_this_iter_s: 377.6946966648102
+  time_total_s: 18822.00800728798
+  timestamp: 1631544253
+  timesteps_since_restore: 0
+  training_iteration: 49
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.5/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     49 |            18822 | 0.631337 | 0.0415037 |     0.708756 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 145, 
+[2m[36m(pid=35579)[0m  train loss: 0.6113199985027313
+[2m[36m(pid=35579)[0m  eval loss: 0.6325167369842529, eval err: 0.0413320779800415
+[2m[36m(pid=35579)[0m 146, 
+[2m[36m(pid=35579)[0m  train loss: 0.6962041485309601
+[2m[36m(pid=35579)[0m  eval loss: 0.6316872298717499, eval err: 0.041442749500274656
+[2m[36m(pid=35579)[0m 147, 
+[2m[36m(pid=35579)[0m  train loss: 0.6630051696300506
+Result for train_3c540_00000:
+  date: 2021-09-13_16-50-31
+  done: false
+  epoch: 147
+  err: 0.041470563411712645
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 50
+  loss: 0.631193277835846
+  loss_train: 0.6630051696300506
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 19200.08272266388
+  time_this_iter_s: 378.07471537590027
+  time_total_s: 19200.08272266388
+  timestamp: 1631544631
+  timesteps_since_restore: 0
+  training_iteration: 50
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 12.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     50 |          19200.1 | 0.631193 | 0.0414706 |     0.663005 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m  eval loss: 0.631193277835846, eval err: 0.041470563411712645
+[2m[36m(pid=35579)[0m 148, 
+[2m[36m(pid=35579)[0m  train loss: 0.6032822132110596
+[2m[36m(pid=35579)[0m  eval loss: 0.6312852478027344, eval err: 0.04146470546722412
+[2m[36m(pid=35579)[0m 149, 
+[2m[36m(pid=35579)[0m  train loss: 0.6530100059509277
+[2m[36m(pid=35579)[0m  eval loss: 0.6357273626327514, eval err: 0.04206393003463745
+[2m[36m(pid=35579)[0m 150, 
+[2m[36m(pid=35579)[0m  train loss: 0.6220389556884766
+[2m[36m(pid=35579)[0m  eval loss: 0.6315570592880249, eval err: 0.04163208961486817
+Result for train_3c540_00000:
+  date: 2021-09-13_16-56-48
+  done: false
+  epoch: 150
+  err: 0.04163208961486817
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 51
+  loss: 0.6315570592880249
+  loss_train: 0.6220389556884766
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 19576.911455631256
+  time_this_iter_s: 376.8287329673767
+  time_total_s: 19576.911455631256
+  timestamp: 1631545008
+  timesteps_since_restore: 0
+  training_iteration: 51
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 12.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     51 |          19576.9 | 0.631557 | 0.0416321 |     0.622039 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 151, 
+[2m[36m(pid=35579)[0m  train loss: 0.6507495975494385
+[2m[36m(pid=35579)[0m  eval loss: 0.6348838365077972, eval err: 0.04163224220275879
+[2m[36m(pid=35579)[0m 152, 
+[2m[36m(pid=35579)[0m  train loss: 0.6249552607536316
+[2m[36m(pid=35579)[0m  eval loss: 0.6360020208358764, eval err: 0.041890900135040286
+[2m[36m(pid=35579)[0m 153, 
+[2m[36m(pid=35579)[0m  train loss: 0.7178350615501404
+[2m[36m(pid=35579)[0m  eval loss: 0.6352148079872131, eval err: 0.04174130439758301
+Result for train_3c540_00000:
+  date: 2021-09-13_17-03-05
+  done: false
+  epoch: 153
+  err: 0.04174130439758301
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 52
+  loss: 0.6352148079872131
+  loss_train: 0.7178350615501404
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 19954.10821080208
+  time_this_iter_s: 377.19675517082214
+  time_total_s: 19954.10821080208
+  timestamp: 1631545385
+  timesteps_since_restore: 0
+  training_iteration: 52
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 11.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     52 |          19954.1 | 0.635215 | 0.0417413 |     0.717835 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 154, 
+[2m[36m(pid=35579)[0m  train loss: 0.6419243550300598
+[2m[36m(pid=35579)[0m  eval loss: 0.6333639991283416, eval err: 0.04162872552871704
+[2m[36m(pid=35579)[0m 155, 
+[2m[36m(pid=35579)[0m  train loss: 0.6656782960891724
+[2m[36m(pid=35579)[0m  eval loss: 0.630728679895401, eval err: 0.04152732133865356
+[2m[36m(pid=35579)[0m 156, 
+[2m[36m(pid=35579)[0m  train loss: 0.5983324193954468
+Result for train_3c540_00000:
+  date: 2021-09-13_17-09-22
+  done: false
+  epoch: 156
+  err: 0.04135298013687134
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 53
+  loss: 0.6297177827358246
+  loss_train: 0.5983324193954468
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 20331.07549929619
+  time_this_iter_s: 376.9672884941101
+  time_total_s: 20331.07549929619
+  timestamp: 1631545762
+  timesteps_since_restore: 0
+  training_iteration: 53
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6297177827358246, eval err: 0.04135298013687134
+== Status ==
+Memory usage on this node: 11.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     53 |          20331.1 | 0.629718 | 0.041353 |     0.598332 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 157, 
+[2m[36m(pid=35579)[0m  train loss: 0.6067170596122742
+[2m[36m(pid=35579)[0m  eval loss: 0.6323912274837494, eval err: 0.041486008167266844
+[2m[36m(pid=35579)[0m 158, 
+[2m[36m(pid=35579)[0m  train loss: 0.6838216853141784
+[2m[36m(pid=35579)[0m  eval loss: 0.6317185115814209, eval err: 0.04182077884674072
+[2m[36m(pid=35579)[0m 159, 
+[2m[36m(pid=35579)[0m  train loss: 0.5743681871891022
+[2m[36m(pid=35579)[0m  eval loss: 0.6304132652282715, eval err: 0.041480562686920165
+Result for train_3c540_00000:
+  date: 2021-09-13_17-15-39
+  done: false
+  epoch: 159
+  err: 0.041480562686920165
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 54
+  loss: 0.6304132652282715
+  loss_train: 0.5743681871891022
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 20707.637051820755
+  time_this_iter_s: 376.56155252456665
+  time_total_s: 20707.637051820755
+  timestamp: 1631546139
+  timesteps_since_restore: 0
+  training_iteration: 54
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 12.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     54 |          20707.6 | 0.630413 | 0.0414806 |     0.574368 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 160, 
+[2m[36m(pid=35579)[0m  train loss: 0.6532002329826355
+[2m[36m(pid=35579)[0m  eval loss: 0.630752934217453, eval err: 0.04153098583221435
+[2m[36m(pid=35579)[0m 161, 
+[2m[36m(pid=35579)[0m  train loss: 0.6624476885795594
+[2m[36m(pid=35579)[0m  eval loss: 0.632666345834732, eval err: 0.04174043893814087
+[2m[36m(pid=35579)[0m 162, 
+[2m[36m(pid=35579)[0m  train loss: 0.6233232045173644
+[2m[36m(pid=35579)[0m  eval loss: 0.6295490741729737, eval err: 0.04127079486846924
+Result for train_3c540_00000:
+  date: 2021-09-13_17-21-56
+  done: false
+  epoch: 162
+  err: 0.04127079486846924
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 55
+  loss: 0.6295490741729737
+  loss_train: 0.6233232045173644
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 21085.016870498657
+  time_this_iter_s: 377.3798186779022
+  time_total_s: 21085.016870498657
+  timestamp: 1631546516
+  timesteps_since_restore: 0
+  training_iteration: 55
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 12.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     55 |            21085 | 0.629549 | 0.0412708 |     0.623323 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 163, 
+[2m[36m(pid=35579)[0m  train loss: 0.6185228955745697
+[2m[36m(pid=35579)[0m  eval loss: 0.6301745736598968, eval err: 0.04167906522750855
+[2m[36m(pid=35579)[0m 164, 
+[2m[36m(pid=35579)[0m  train loss: 0.6021837449073791
+[2m[36m(pid=35579)[0m  eval loss: 0.6304876935482026, eval err: 0.041389813423156736
+[2m[36m(pid=35579)[0m 165, 
+[2m[36m(pid=35579)[0m  train loss: 0.5966362750530243
+[2m[36m(pid=35579)[0m  eval loss: 0.6321603965759277, eval err: 0.041715767383575436
+Result for train_3c540_00000:
+  date: 2021-09-13_17-28-13
+  done: false
+  epoch: 165
+  err: 0.041715767383575436
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 56
+  loss: 0.6321603965759277
+  loss_train: 0.5966362750530243
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 21462.303773403168
+  time_this_iter_s: 377.2869029045105
+  time_total_s: 21462.303773403168
+  timestamp: 1631546893
+  timesteps_since_restore: 0
+  training_iteration: 56
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 12.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |    loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     56 |          21462.3 | 0.63216 | 0.0417158 |     0.596636 |
++-------------------+----------+--------------------+--------+------------------+---------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 166, 
+[2m[36m(pid=35579)[0m  train loss: 0.6995293569564819
+[2m[36m(pid=35579)[0m  eval loss: 0.6305680561065674, eval err: 0.04148432016372681
+[2m[36m(pid=35579)[0m 167, 
+[2m[36m(pid=35579)[0m  train loss: 0.6308864545822144
+[2m[36m(pid=35579)[0m  eval loss: 0.633505973815918, eval err: 0.041770365238189694
+[2m[36m(pid=35579)[0m 168, 
+[2m[36m(pid=35579)[0m  train loss: 0.6597767984867096
+Result for train_3c540_00000:
+  date: 2021-09-13_17-34-30
+  done: false
+  epoch: 168
+  err: 0.04167581796646118
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 57
+  loss: 0.633387018442154
+  loss_train: 0.6597767984867096
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 21838.826840877533
+  time_this_iter_s: 376.52306747436523
+  time_total_s: 21838.826840877533
+  timestamp: 1631547270
+  timesteps_since_restore: 0
+  training_iteration: 57
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.633387018442154, eval err: 0.04167581796646118
+== Status ==
+Memory usage on this node: 12.0/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     57 |          21838.8 | 0.633387 | 0.0416758 |     0.659777 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 169, 
+[2m[36m(pid=35579)[0m  train loss: 0.651851178407669
+[2m[36m(pid=35579)[0m  eval loss: 0.6332055509090424, eval err: 0.041844387054443356
+[2m[36m(pid=35579)[0m 170, 
+[2m[36m(pid=35579)[0m  train loss: 0.5815942645072937
+[2m[36m(pid=35579)[0m  eval loss: 0.6303247559070587, eval err: 0.04145015478134155
+[2m[36m(pid=35579)[0m 171, 
+[2m[36m(pid=35579)[0m  train loss: 0.6605250525474549
+[2m[36m(pid=35579)[0m  eval loss: 0.6296785855293274, eval err: 0.04156947374343872
+Result for train_3c540_00000:
+  date: 2021-09-13_17-40-46
+  done: false
+  epoch: 171
+  err: 0.04156947374343872
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 58
+  loss: 0.6296785855293274
+  loss_train: 0.6605250525474549
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 22215.094576835632
+  time_this_iter_s: 376.26773595809937
+  time_total_s: 22215.094576835632
+  timestamp: 1631547646
+  timesteps_since_restore: 0
+  training_iteration: 58
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 11.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     58 |          22215.1 | 0.629679 | 0.0415695 |     0.660525 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 172, 
+[2m[36m(pid=35579)[0m  train loss: 0.6772425293922424
+[2m[36m(pid=35579)[0m  eval loss: 0.6315059113502502, eval err: 0.04156218051910401
+[2m[36m(pid=35579)[0m 173, 
+[2m[36m(pid=35579)[0m  train loss: 0.6058954322338104
+[2m[36m(pid=35579)[0m  eval loss: 0.6301850843429565, eval err: 0.04141252279281616
+[2m[36m(pid=35579)[0m 174, 
+[2m[36m(pid=35579)[0m  train loss: 0.6375957953929902
+[2m[36m(pid=35579)[0m  eval loss: 0.6302671635150909, eval err: 0.04128037691116333
+Result for train_3c540_00000:
+  date: 2021-09-13_17-47-03
+  done: false
+  epoch: 174
+  err: 0.04128037691116333
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 59
+  loss: 0.6302671635150909
+  loss_train: 0.6375957953929902
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 22591.7359688282
+  time_this_iter_s: 376.64139199256897
+  time_total_s: 22591.7359688282
+  timestamp: 1631548023
+  timesteps_since_restore: 0
+  training_iteration: 59
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     59 |          22591.7 | 0.630267 | 0.0412804 |     0.637596 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 175, 
+[2m[36m(pid=35579)[0m  train loss: 0.6399206721782684
+[2m[36m(pid=35579)[0m  eval loss: 0.6293266224861145, eval err: 0.04126300096511841
+[2m[36m(pid=35579)[0m 176, 
+[2m[36m(pid=35579)[0m  train loss: 0.6442678666114807
+[2m[36m(pid=35579)[0m  eval loss: 0.6275606322288513, eval err: 0.04126589298248291
+[2m[36m(pid=35579)[0m 177, 
+[2m[36m(pid=35579)[0m  train loss: 0.6410231900215149
+[2m[36m(pid=35579)[0m  eval loss: 0.6304144430160522, eval err: 0.04149187088012695
+Result for train_3c540_00000:
+  date: 2021-09-13_17-53-19
+  done: false
+  epoch: 177
+  err: 0.04149187088012695
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 60
+  loss: 0.6304144430160522
+  loss_train: 0.6410231900215149
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 22968.267990112305
+  time_this_iter_s: 376.5320212841034
+  time_total_s: 22968.267990112305
+  timestamp: 1631548399
+  timesteps_since_restore: 0
+  training_iteration: 60
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     60 |          22968.3 | 0.630414 | 0.0414919 |     0.641023 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 178, 
+[2m[36m(pid=35579)[0m  train loss: 0.6403998768329621
+[2m[36m(pid=35579)[0m  eval loss: 0.6316054391860962, eval err: 0.04154268264770508
+[2m[36m(pid=35579)[0m 179, 
+[2m[36m(pid=35579)[0m  train loss: 0.6974145114421845
+[2m[36m(pid=35579)[0m  eval loss: 0.6285099852085113, eval err: 0.041508433818817136
+[2m[36m(pid=35579)[0m 180, 
+[2m[36m(pid=35579)[0m  train loss: 0.6199891149997712
+Result for train_3c540_00000:
+  date: 2021-09-13_17-59-36
+  done: false
+  epoch: 180
+  err: 0.04155625343322754
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 61
+  loss: 0.6295269024372101
+  loss_train: 0.6199891149997712
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 23344.77720618248
+  time_this_iter_s: 376.50921607017517
+  time_total_s: 23344.77720618248
+  timestamp: 1631548776
+  timesteps_since_restore: 0
+  training_iteration: 61
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6295269024372101, eval err: 0.04155625343322754
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     61 |          23344.8 | 0.629527 | 0.0415563 |     0.619989 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 181, 
+[2m[36m(pid=35579)[0m  train loss: 0.6586773550510406
+[2m[36m(pid=35579)[0m  eval loss: 0.627460526227951, eval err: 0.04132686853408814
+[2m[36m(pid=35579)[0m 182, 
+[2m[36m(pid=35579)[0m  train loss: 0.652054854631424
+[2m[36m(pid=35579)[0m  eval loss: 0.6288860619068146, eval err: 0.04135820627212525
+[2m[36m(pid=35579)[0m 183, 
+[2m[36m(pid=35579)[0m  train loss: 0.6942692792415619
+[2m[36m(pid=35579)[0m  eval loss: 0.6289206993579864, eval err: 0.04151897192001343
+Result for train_3c540_00000:
+  date: 2021-09-13_18-05-52
+  done: false
+  epoch: 183
+  err: 0.04151897192001343
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 62
+  loss: 0.6289206993579864
+  loss_train: 0.6942692792415619
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 23720.708711624146
+  time_this_iter_s: 375.93150544166565
+  time_total_s: 23720.708711624146
+  timestamp: 1631549152
+  timesteps_since_restore: 0
+  training_iteration: 62
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.9/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |      err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     62 |          23720.7 | 0.628921 | 0.041519 |     0.694269 |
++-------------------+----------+--------------------+--------+------------------+----------+----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 184, 
+[2m[36m(pid=35579)[0m  train loss: 0.5865782713890075
+[2m[36m(pid=35579)[0m  eval loss: 0.6293796706199646, eval err: 0.04142611265182495
+[2m[36m(pid=35579)[0m 185, 
+[2m[36m(pid=35579)[0m  train loss: 0.706850699186325
+[2m[36m(pid=35579)[0m  eval loss: 0.6303328216075897, eval err: 0.04160249471664429
+[2m[36m(pid=35579)[0m 186, 
+[2m[36m(pid=35579)[0m  train loss: 0.6700216472148895
+[2m[36m(pid=35579)[0m  eval loss: 0.6271064102649688, eval err: 0.04135331392288208
+Result for train_3c540_00000:
+  date: 2021-09-13_18-12-08
+  done: false
+  epoch: 186
+  err: 0.04135331392288208
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 63
+  loss: 0.6271064102649688
+  loss_train: 0.6700216472148895
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 24096.404656648636
+  time_this_iter_s: 375.69594502449036
+  time_total_s: 24096.404656648636
+  timestamp: 1631549528
+  timesteps_since_restore: 0
+  training_iteration: 63
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     63 |          24096.4 | 0.627106 | 0.0413533 |     0.670022 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 187, 
+[2m[36m(pid=35579)[0m  train loss: 0.6213245713710784
+[2m[36m(pid=35579)[0m  eval loss: 0.6302528715133667, eval err: 0.0413887619972229
+[2m[36m(pid=35579)[0m 188, 
+[2m[36m(pid=35579)[0m  train loss: 0.6767164301872254
+[2m[36m(pid=35579)[0m  eval loss: 0.6321208786964416, eval err: 0.04170962333679199
+[2m[36m(pid=35579)[0m 189, 
+[2m[36m(pid=35579)[0m  train loss: 0.698359831571579
+Result for train_3c540_00000:
+  date: 2021-09-13_18-18-23
+  done: false
+  epoch: 189
+  err: 0.041646707057952884
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 64
+  loss: 0.6319778215885162
+  loss_train: 0.698359831571579
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 24472.094113111496
+  time_this_iter_s: 375.6894564628601
+  time_total_s: 24472.094113111496
+  timestamp: 1631549903
+  timesteps_since_restore: 0
+  training_iteration: 64
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6319778215885162, eval err: 0.041646707057952884
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     64 |          24472.1 | 0.631978 | 0.0416467 |      0.69836 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 190, 
+[2m[36m(pid=35579)[0m  train loss: 0.6131027710437774
+[2m[36m(pid=35579)[0m  eval loss: 0.6288661539554596, eval err: 0.04123924016952515
+[2m[36m(pid=35579)[0m 191, 
+[2m[36m(pid=35579)[0m  train loss: 0.5946641409397125
+[2m[36m(pid=35579)[0m  eval loss: 0.6313627445697785, eval err: 0.04148022174835205
+[2m[36m(pid=35579)[0m 192, 
+[2m[36m(pid=35579)[0m  train loss: 0.634181352853775
+Result for train_3c540_00000:
+  date: 2021-09-13_18-24-39
+  done: false
+  epoch: 192
+  err: 0.04135556697845459
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 65
+  loss: 0.6295455694198608
+  loss_train: 0.634181352853775
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 24847.654918909073
+  time_this_iter_s: 375.5608057975769
+  time_total_s: 24847.654918909073
+  timestamp: 1631550279
+  timesteps_since_restore: 0
+  training_iteration: 65
+  trial_id: 3c540_00000
+  
+[2m[36m(pid=35579)[0m  eval loss: 0.6295455694198608, eval err: 0.04135556697845459
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     65 |          24847.7 | 0.629546 | 0.0413556 |     0.634181 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 193, 
+[2m[36m(pid=35579)[0m  train loss: 0.6159968590736389
+[2m[36m(pid=35579)[0m  eval loss: 0.630063271522522, eval err: 0.041543147563934325
+[2m[36m(pid=35579)[0m 194, 
+[2m[36m(pid=35579)[0m  train loss: 0.6062939774990082
+[2m[36m(pid=35579)[0m  eval loss: 0.6318361687660218, eval err: 0.0416933536529541
+[2m[36m(pid=35579)[0m 195, 
+[2m[36m(pid=35579)[0m  train loss: 0.6737092936038971
+[2m[36m(pid=35579)[0m  eval loss: 0.6290028035640717, eval err: 0.04133329391479492
+Result for train_3c540_00000:
+  date: 2021-09-13_18-30-55
+  done: false
+  epoch: 195
+  err: 0.04133329391479492
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 66
+  loss: 0.6290028035640717
+  loss_train: 0.6737092936038971
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 25223.612056016922
+  time_this_iter_s: 375.9571371078491
+  time_total_s: 25223.612056016922
+  timestamp: 1631550655
+  timesteps_since_restore: 0
+  training_iteration: 66
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     66 |          25223.6 | 0.629003 | 0.0413333 |     0.673709 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 196, 
+[2m[36m(pid=35579)[0m  train loss: 0.6533193361759185
+[2m[36m(pid=35579)[0m  eval loss: 0.6271074950695038, eval err: 0.04115413665771484
+[2m[36m(pid=35579)[0m 197, 
+[2m[36m(pid=35579)[0m  train loss: 0.6377112567424774
+[2m[36m(pid=35579)[0m  eval loss: 0.6305431747436523, eval err: 0.0415240216255188
+[2m[36m(pid=35579)[0m 198, 
+[2m[36m(pid=35579)[0m  train loss: 0.5943118393421173
+[2m[36m(pid=35579)[0m  eval loss: 0.6304879248142242, eval err: 0.04157240629196167
+Result for train_3c540_00000:
+  date: 2021-09-13_18-37-10
+  done: false
+  epoch: 198
+  err: 0.04157240629196167
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 67
+  loss: 0.6304879248142242
+  loss_train: 0.5943118393421173
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 25599.02159190178
+  time_this_iter_s: 375.4095358848572
+  time_total_s: 25599.02159190178
+  timestamp: 1631551030
+  timesteps_since_restore: 0
+  training_iteration: 67
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     67 |            25599 | 0.630488 | 0.0415724 |     0.594312 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 199, 
+[2m[36m(pid=35579)[0m  train loss: 0.6395015704631806
+[2m[36m(pid=35579)[0m  eval loss: 0.6286847221851349, eval err: 0.041247320175170896
+Result for train_3c540_00000:
+  date: 2021-09-13_18-39-15
+  done: false
+  epoch: 199
+  err: 0.041247320175170896
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  hostname: bigcuda4
+  iterations_since_restore: 68
+  loss: 0.6286847221851349
+  loss_train: 0.6395015704631806
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 25724.24588894844
+  time_this_iter_s: 125.22429704666138
+  time_total_s: 25724.24588894844
+  timestamp: 1631551155
+  timesteps_since_restore: 0
+  training_iteration: 68
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.8/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 20.0/40 CPUs, 1.0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 RUNNING)
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status   | loc                |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | RUNNING  | 131.220.7.54:35579 |     68 |          25724.2 | 0.628685 | 0.0412473 |     0.639502 |
++-------------------+----------+--------------------+--------+------------------+----------+-----------+--------------+
+
+
+Result for train_3c540_00000:
+  date: 2021-09-13_18-39-15
+  done: true
+  epoch: 199
+  err: 0.041247320175170896
+  experiment_id: ca35785e25cc43b2974ad434aa1b9909
+  experiment_tag: '0'
+  hostname: bigcuda4
+  iterations_since_restore: 68
+  loss: 0.6286847221851349
+  loss_train: 0.6395015704631806
+  node_ip: 131.220.7.54
+  pid: 35579
+  should_checkpoint: true
+  time_since_restore: 25724.24588894844
+  time_this_iter_s: 125.22429704666138
+  time_total_s: 25724.24588894844
+  timestamp: 1631551155
+  timesteps_since_restore: 0
+  training_iteration: 68
+  trial_id: 3c540_00000
+  
+== Status ==
+Memory usage on this node: 15.7/251.9 GiB
+Using FIFO scheduling algorithm.
+Resources requested: 0/40 CPUs, 0/1 GPUs, 0.0/158.62 GiB heap, 0.0/71.97 GiB objects (0.0/1.0 accelerator_type:G)
+Result logdir: /home/user/brank/ray_results/experiment_2_finetune
+Number of trials: 1/1 (1 TERMINATED)
++-------------------+------------+-------+--------+------------------+----------+-----------+--------------+
+| Trial name        | status     | loc   |   iter |   total time (s) |     loss |       err |   loss_train |
+|-------------------+------------+-------+--------+------------------+----------+-----------+--------------|
+| train_3c540_00000 | TERMINATED |       |     68 |          25724.2 | 0.628685 | 0.0412473 |     0.639502 |
++-------------------+------------+-------+--------+------------------+----------+-----------+--------------+
+
+
+[2m[36m(pid=35579)[0m 
+[2m[36m(pid=35579)[0m Training completed
