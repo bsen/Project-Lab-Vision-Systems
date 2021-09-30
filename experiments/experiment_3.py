@@ -17,6 +17,10 @@ from dataloader import SceneFlowLoader as DA
 from dataloader import listflowfile as lt
 from modules.our_net import OurNet
 
+"""
+A module performing a random search for hyperparameters using the raytune framework.
+"""
+
 # datasets for training and validation
 kitti_val = KittiDataset('val')
 kitti_val_loader = torch.utils.data.DataLoader(dataset=kitti_val, batch_size=1,

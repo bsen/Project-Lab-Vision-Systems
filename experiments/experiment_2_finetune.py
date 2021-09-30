@@ -13,6 +13,11 @@ from my_utils import load_tune_checkpoint, get_tune_checkpoint
 from my_utils import set_random_seed
 from training import training
 
+"""
+Finetune the best trial of experiment_2
+
+This experiment is not included in the report.
+"""
 
 device = 'cuda'
 set_random_seed(22)

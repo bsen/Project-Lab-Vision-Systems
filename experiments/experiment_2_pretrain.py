@@ -14,10 +14,14 @@ import dataloader.SceneFlowLoader as SFL
 from training import training
 from modules.our_net import OurNet
 
-"""This python-module is used to pretrain the models on Scene Flow driving dataset for 
+"""
+This python-module is used to pretrain the models on Scene Flow driving dataset for 
 experiment 2.
 The first command line argument should be cost_heavy or feat_heavy.
-This specifies, which model is pretrained."""
+This specifies, which model is pretrained.
+
+This experiment is not included in the report.
+"""
 
 # set custom random seed
 set_random_seed(100)

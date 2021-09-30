@@ -15,6 +15,12 @@ from dataloader import SceneFlowLoader as DA
 from dataloader import listflowfile as lt
 from modules.our_net import OurNet
 
+"""
+This is not included in the report.
+At the time of performing this experiment, I still had a misconception about the
+regressor and therefore, its output was useless.
+"""
+
 # datasets for training and validation
 kitti_val = KittiDataset('val')
 kitti_val_loader = torch.utils.data.DataLoader(dataset=kitti_val, batch_size=1,

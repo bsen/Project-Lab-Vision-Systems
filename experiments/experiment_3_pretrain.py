@@ -16,7 +16,7 @@ from modules.our_net import OurNet
 
 """
 This python-module is used to pretrain the model on Scene Flow driving dataset for 
-experiment 3.
+experiment_3.
 """
 
 # set custom random seed

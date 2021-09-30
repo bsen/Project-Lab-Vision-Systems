@@ -16,6 +16,11 @@ from dataloader import SceneFlowLoader as DA
 from dataloader import listflowfile as lt
 from modules.our_net import OurNet
 
+"""
+An experiment comparing two models using random search.
+
+It is not included in the report.
+"""
 
 # datasets for training and validation
 kitti_val = KittiDataset('val')

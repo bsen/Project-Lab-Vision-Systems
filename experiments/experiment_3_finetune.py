@@ -13,6 +13,9 @@ from my_utils import load_tune_checkpoint
 from my_utils import set_random_seed
 from training import training
 
+"""
+A module for finetuning the best trial of experiment_3
+"""
 
 device = 'cuda'
 set_random_seed(22)

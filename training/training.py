@@ -160,7 +160,14 @@ def _train_model_no_time(model, optimizer, scheduler, train_loader,
             if writer is not None:
                 writer.add_scalar('validation loss', v_loss)
                 writer.add_scalar('validation error', v_err)
+                # is see now that i forgot to add the global_step ..
+                # I only used this once in the experiments in the report (for pretraining in experiment 3), so 
+                # I let it as it was, but the right way of doing it would be:
+                # writer.add_scalar('validation loss', v_loss, epoch)
+                # and
+                # writer.add_scalar('validation error', v_err, epoch)
 
+                
         if use_tune and ((epoch%tune_interval == 0) or (epoch == num_epochs-1)):
             with tune.checkpoint_dir(epoch) as checkpoint_dir:
                 path = os.path.join(checkpoint_dir, "checkpoint")

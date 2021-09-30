@@ -7,6 +7,12 @@ from my_utils import device
 
 
 class smoothL1:
+    """
+    The smooth-L1-loss.
+    The parameters should be of size (B, H, W).
+    Pixels where the target disparity is 0.0 are ignored.
+    """
+    
     def __init__(self, beta):
         self.nnSmoothL1 = nn.SmoothL1Loss(beta=beta)
 

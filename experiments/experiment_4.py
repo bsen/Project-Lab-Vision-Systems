@@ -50,6 +50,7 @@ def train(config, checkpoint_dir=None):
     scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10000000])
     
     epoch=0
+    # load checkpoint_dir if provided
     if checkpoint_dir:
         states = get_tune_checkpoint(os.path.join(checkpoint_dir, "checkpoint"))
         model_state, optimizer_state, scheduler_state, epoch = states
