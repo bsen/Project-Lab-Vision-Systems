@@ -11,7 +11,6 @@ was used for finetuning and evaluation.
 
 ## Dependencies
 * the KITTI dataset (can be downloaded from http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo)
-	(extract this in a folder called `kitti2015` inside the `datasets` folder of this repository) 
 * `pytorch`
 * `cuda`
 * `torch-warmup-lr` module from Le found under https://github.com/lehduong/torch-warmup-lr
